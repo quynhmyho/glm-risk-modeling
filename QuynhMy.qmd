@@ -1,0 +1,1543 @@
+---
+title: "PHÂN TÍCH QUYẾT ĐỊNH NGOẠI TÌNH CỦA NGƯỜI ĐÃ LẬP GIA ĐÌNH"
+author: "Hồ Quỳnh My"
+date: "2026-07-21"
+crossref:
+  tbl-title: "Bảng"
+  fig-title: "Hình"
+  eq-title: "Phương trình"
+  tbl-prefix: "Bảng"
+  fig-prefix: "Hình"
+  title-delim: "."
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: scrreprt
+    papersize: a4
+    toc: true
+    toc-depth: 3
+    toc-title: "MỤC LỤC"
+    number-sections: true
+    keep-tex: true
+    mainfont: "Times New Roman"
+    fontsize: 13pt
+    geometry:
+      - top=2.0cm
+      - bottom=2.0cm
+      - left=2.5cm
+      - right=2.0cm
+      - footskip=1.0cm
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
+    include-in-header:
+      text: |
+        \usepackage{booktabs}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \usepackage{colortbl}
+        \usepackage{pdflscape}
+        \usepackage{tabularx}
+        \usepackage{threeparttable}
+        \usepackage{threeparttablex}
+        \usepackage[normalem]{ulem}
+        \usepackage{makecell}
+        \makeatletter
+        \providecommand{\insert@pcolumn}{\insert@column}
+        \makeatother
+        \usepackage{graphicx}
+        \usepackage{setspace}
+        \usepackage{tikz}
+        \usetikzlibrary{calc}
+        \usepackage{indentfirst}
+        % === Khoảng cách dòng 1.5 ===
+        \onehalfspacing
+        % === Thụt đầu dòng 1.27cm ===
+        \setlength{\parindent}{1.27cm}
+        % === Đánh số trang phía dưới giữa ===
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \fancyfoot[C]{\thepage}
+        \renewcommand{\headrulewidth}{0pt}
+        \fancypagestyle{plain}{%
+          \fancyhf{}%
+          \fancyfoot[C]{\thepage}%
+          \renewcommand{\headrulewidth}{0pt}%
+        }
+        % === Đánh số chương: "Chương 1.", mục "1.1.", "1.2." ===
+        \usepackage{titlesec}
+        \renewcommand{\chaptername}{Chương}
+        % Chương có số — căn giữa
+        \titleformat{\chapter}[block]
+          {\centering\normalfont\large\bfseries}
+          {\MakeUppercase{Chương \thechapter.}}{1em}{\MakeUppercase}
+        \titlespacing*{\chapter}{0pt}{0pt}{10pt}
+
+        % Chương không số (Lời cam đoan, Lời cảm ơn, Mục lục, Tài liệu tham khảo...) — căn giữa
+        \titleformat{name=\chapter,numberless}[block]
+          {\centering\normalfont\large\bfseries}
+          {}{0pt}{\MakeUppercase}
+        \titlespacing*{name=\chapter,numberless}{0pt}{0pt}{10pt}
+        \titleformat{\section}[block]
+          {\normalfont\normalsize\bfseries}
+          {\thesection.}{1em}{}
+        \titlespacing*{\section}{0pt}{12pt}{6pt}
+        \titleformat{\subsection}[block]
+          {\normalfont\normalsize\bfseries}
+          {\thesubsection.}{1em}{}
+        \titlespacing*{\subsection}{0pt}{10pt}{4pt}
+        \titleformat{\subsubsection}[block]
+          {\normalfont\normalsize\bfseries}
+          {\thesubsubsection.}{1em}{}
+        \titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+        % === Mục lục hiển thị "Chương X." thay vì chỉ số ===
+        \usepackage{titletoc}
+        \titlecontents{chapter}[0pt]
+          {\vspace{6pt}\bfseries}
+          {CHƯƠNG \thecontentslabel.\quad}
+          {}
+          {\titlerule*[0.5pc]{.}\contentspage}
+        \let\maketitle\relax
+      
+    include-before-body:
+      text: |
+        \begin{titlepage}
+        \thispagestyle{empty}
+        \begin{tikzpicture}[remember picture, overlay]
+          % Khung dày phía ngoài (Cách lề Trái 2.0cm, Phải 1.5cm, Trên/Dưới 1.5cm)
+          \draw[line width=1.5pt]
+            ($(current page.north west) + (2.0cm, -1.5cm)$)
+            rectangle
+            ($(current page.south east) + (-1.5cm, 1.5cm)$);
+          % Khung mảnh phía trong (Cách khung ngoài 1mm)
+          \draw[line width=0.5pt]
+            ($(current page.north west) + (2.1cm, -1.6cm)$)
+            rectangle
+            ($(current page.south east) + (-1.6cm, 1.6cm)$);
+        \end{tikzpicture}
+        \begin{center}
+        \vspace*{0.4cm} % Giảm một chút vì khung đã đẩy lên cao hơn
+        {\large \textbf{BỘ TÀI CHÍNH}}\\[2pt]
+        {\large \textbf{TRƯỜNG ĐẠI HỌC TÀI CHÍNH -- MARKETING}}\\[2pt]
+        {\large \textbf{KHOA KHOA HỌC DỮ LIỆU}}\\[6pt]
+        {\footnotesize \textbf{\textasciitilde\textasciitilde\textasciitilde oOo\textasciitilde\textasciitilde\textasciitilde}}\\[12pt]
+        \includegraphics[width=4cm]{logo_ufm.png}\\[16pt]
+        {\Large \textbf{TIỂU LUẬN MÔN HỌC}}\\[6pt]
+        {\LARGE \textbf{PHÂN TÍCH DỮ LIỆU ĐỊNH TÍNH}}\\[20pt]
+        \begin{minipage}{0.82\textwidth}
+        \centering
+        \begin{spacing}{1.6}
+        {\Large \textbf{ĐỀ TÀI: PHÂN TÍCH QUYẾT ĐỊNH NGOẠI TÌNH CỦA NGƯỜI ĐÃ LẬP GIA ĐÌNH}}
+        \end{spacing}
+        \end{minipage}\\[24pt]
+         \begin{flushleft}
+        % Chỉnh lại khoảng thụt lề này để phần thông tin sinh viên nằm ngay giữa trang
+        \hspace{3.2cm} 
+        \begin{tabular}{@{}l l l}
+        \textbf{Chuyên ngành} & : & Tài chính định lượng \\[6pt]
+        \textbf{Giảng viên hướng dẫn} & : & Th.S Trần Mạnh Tường \\[6pt]
+        \textbf{Nhóm sinh viên thực hiện} & : & Nhóm 12 \\
+        \end{tabular}
+        \end{flushleft}
+        \vspace{-15pt}
+        \begin{center}
+        \begin{tabular}{@{}l l@{}}
+        1. Võ Thị Kiều My - 2321000339 \\
+        2. Hồ Quỳnh My - 2321000338 \\
+        3. Trần Huỳnh Ni Ka - 2321000323 \\
+        \end{tabular}
+        \end{center}
+        \vfill
+        {\large Thành phố Hồ Chí Minh, tháng 07 năm 2026}
+        \vspace{0.5cm}
+        \end{center}
+        \end{titlepage}
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# LỜI CAM ĐOAN {.unnumbered}
+
+Nhóm tác giả xin cam đoan đây là công trình nghiên cứu tiểu luận độc lập của nhóm dưới sự hướng dẫn của Th.S Trần Mạnh Tường trong khuôn khổ môn học *Phân tích dữ liệu định tính*. Các số liệu, kết quả phân tích và mô hình hóa trong bài tiểu luận này là hoàn toàn trung thực, được xử lý từ bộ dữ liệu thực tế đã qua kiểm chứng. Các nguồn tham khảo, tài liệu trích dẫn đều được ghi rõ nguồn gốc theo chuẩn học thuật.
+
+\vspace{1.5cm}
+
+\begin{flushright}
+\textbf{Nhóm sinh viên thực hiện}\\
+\end{flushright}
+
+\newpage
+
+# LỜI CẢM ƠN {.unnumbered}
+
+Nhóm xin trân trọng cảm ơn Th.S Trần Mạnh Tường đã tận tình giảng dạy, truyền đạt tư duy thống kê ứng dụng và định hướng phương pháp luận kinh tế lượng mở rộng cho môn học *Phân tích dữ liệu định tính*. Những kiến thức về mô hình tuyến tính tổng quát (GLM), kiểm định bảng ngẫu nhiên và mô hình hóa xác suất, số đếm là nền tảng cốt lõi giúp nhóm hoàn thành bài tiểu luận nghiên cứu này.
+
+\newpage
+
+# TÓM TẮT BÁO CÁO {.unnumbered}
+
+Bài tiểu luận với đề tài **"Phân tích quyết định ngoại tình của người đã lập gia đình"** ứng dụng hệ thống các phương pháp phân tích dữ liệu định tính và kinh tế lượng mở rộng để mô hình hóa hành vi có mối quan hệ ngoài luồng (extramarital affairs) dựa trên bộ dữ liệu 601 quan sát của Ray Fair (1978).
+
+Nghiên cứu tiếp cận vấn đề theo nhiều cấp độ phân tích, từ thống kê mô tả và suy diễn tỷ lệ, đến bảng chéo và bảng phân tầng, rồi mở rộng sang các mô hình hồi quy tuyến tính tổng quát (GLM) như Logistic, Probit, Cloglog, Poisson, Quasi-Poisson và Negative Binomial. Kết quả cho thấy hạnh phúc hôn nhân và mức độ tôn giáo có tác động nghịch chiều mạnh mẽ đến xác suất ngoại tình, trong khi số năm kết hôn làm gia tăng rủi ro này; đồng thời, hiện tượng quá phân tán trong biến đếm được xác nhận khiến mô hình Negative Binomial cho độ phù hợp vượt trội. Ngoài ra, phân tích log-linear ba chiều còn làm rõ mối quan hệ tương tác giữa giới tính, hạnh phúc hôn nhân và hành vi ngoại tình, qua đó chỉ ra sự tương đương toán học giữa hệ số tương tác trong log-linear và hệ số trong logistic regression. Bài nghiên cứu đóng góp cả về mặt lý thuyết thống kê ứng dụng lẫn hàm ý thực tiễn cho công tác tư vấn tâm lý - hôn nhân gia đình.
+
+\newpage
+
+# GIỚI THIỆU DỮ LIỆU VÀ LÀM SẠCH
+
+## Bối cảnh nghiên cứu và Lý do chọn đề tài
+
+Trong phân tích kinh tế lượng và khoa học xã hội, việc nghiên cứu các quyết định cá nhân mang tính định tính - chẳng hạn như quyết định tham gia thị trường lao động, quyết định vỡ nợ, hay các lựa chọn liên quan đến hôn nhân gia đình - đóng vai trò vô cùng quan trọng. Đề tài **"Phân tích quyết định ngoại tình của người đã lập gia đình"** dựa trên công trình nghiên cứu nổi tiếng của giáo sư Ray C. Fair (1978) xuất bản trên tạp chí *Journal of Political Economy*.
+
+Nghiên cứu này nhằm mục đích mô hình hóa các yếu tố kinh tế, xã hội và tâm lý ảnh hưởng đến hành vi có mối quan hệ ngoài luồng. Việc phân tích bộ dữ liệu này không chỉ mang ý nghĩa thực tiễn về mặt xã hội học mà còn là một bài tập thực hành hoàn hảo cho môn học *Phân tích dữ liệu định tính*, nơi các mô hình hồi quy tuyến tính cổ điển (OLS) tỏ ra không phù hợp do biến phụ thuộc mang bản chất là biến số đếm hoặc biến nhị phân.
+
+## Mô tả bộ dữ liệu
+
+Bộ dữ liệu `Affairs` bao gồm 601 quan sát đối với những người đã lập gia đình. Dữ liệu được trích xuất từ hai khảo sát lớn do tạp chí *Psychology Today* và *Redbook* thực hiện vào thập niên 1970.
+
+Dữ liệu được nạp trực tiếp từ nguồn lưu trữ trực tuyến uy tín (`Rdatasets / AER`) để đảm bảo tính minh bạch và khả năng tái lập.
+
+```{r setup-01, echo=FALSE, message=FALSE, warning=FALSE}
+# Nạp các thư viện bắt buộc
+library(tidyverse)
+library(knitr)
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+
+# 1. Đọc dữ liệu từ đường dẫn CSV đã kiểm chứng
+url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
+
+# Đọc dữ liệu online với kiểm tra lỗi
+df_raw <- tryCatch({
+  read.csv(url_data)
+}, error = function(e) {
+  stop("Không thể nạp dữ liệu từ URL. Vui lòng kiểm tra kết nối mạng!")
+})
+
+# Bỏ cột chỉ mục thừa nếu có (cột đầu tiên X)
+if ("X" %in% names(df_raw)) {
+  df_raw <- df_raw |> select(-X)
+}
+```
+
+```{r cleaning-01, echo=FALSE, message=FALSE, warning=FALSE}
+# Kiểm tra giá trị thiếu (Missing values)
+missing_summary <- colSums(is.na(df_raw))
+
+# Tạo biến phân loại và gán factor có thứ bậc (Ordinal/Nominal Factors)
+df_clean <- df_raw |>
+  mutate(
+    # Biến phụ thuộc nhị phân: 1 nếu có ngoại tình (>0 lần), 0 nếu không
+    has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
+    has_affair_num = ifelse(affairs > 0, 1, 0),
+    
+    # Biến phụ thuộc phân nhóm (Ordinal Category)
+    affair_cat = factor(
+      case_when(
+        affairs == 0 ~ "Không (0 lần)",
+        affairs >= 1 & affairs <= 3 ~ "Ít (1-3 lần)",
+        affairs >= 7 ~ "Nhiều (>=7 lần)"
+      ),
+      levels = c("Không (0 lần)", "Ít (1-3 lần)", "Nhiều (>=7 lần)"),
+      ordered = TRUE
+    ),
+    
+    # Chuẩn hóa biến giới tính
+    gender = factor(gender, levels = c("male", "female"), labels = c("Nam", "Nữ")),
+    
+    # Biến con cái
+    children = factor(children, levels = c("no", "yes"), labels = c("Không có con", "Có con")),
+    
+    # Biến mức độ hạnh phúc hôn nhân (Thang đo Ordinal 1-5)
+    rating_factor = factor(
+      rating,
+      levels = 1:5,
+      labels = c("1-Rất bất hạnh", "2-Bất hạnh", "3-Trung bình", "4-Hạnh phúc", "5-Rất hạnh phúc"),
+      ordered = TRUE
+    ),
+    
+    # Biến mức độ tôn giáo (Thang đo Ordinal 1-5)
+    religious_factor = factor(
+      religiousness,
+      levels = 1:5,
+      labels = c("1-Không", "2-Hơi tôn giáo", "3-Trung bình", "4-Tôn giáo", "5-Rất tôn giáo"),
+      ordered = TRUE
+    )
+  )
+```
+
+Dưới đây là bảng tổng hợp định nghĩa, kiểu biến và thang đo của tất cả các biến được sử dụng trong bài tiểu luận:
+
+| Tên Biến | Vai trò trong Mô hình | Thang đo Đo lường | Mô Tả Chi Tiết |
+| :--- | :--- | :--- | :--- |
+| `affairs` | Biến phụ thuộc (Target) | Định lượng (Ratio / Discrete Count) | Số lần phát sinh quan hệ ngoài luồng trong năm qua (0, 1, 2, 3, 7, 12) |
+| `has_affair` | Biến phụ thuộc (Binary Target) | Định tính (Nominal / Binary) | Biến phái sinh của biến affairs, chỉ thị có ngoại tình hay không (Không = 0, Có = 1) |
+| `yearsmarried` | Biến độc lập (Predictor) | Định lượng (Ratio / Continuous) | Số năm kết hôn của đối tượng khảo sát |
+| `rating` | Biến độc lập (Predictor) | Định tính (Ordinal / Thứ bậc 1-5) | Tự đánh giá mức độ hạnh phúc hôn nhân (1 = Rất bất hạnh, 5 = Rất hạnh phúc) |
+| `gender` | Biến độc lập / Biến phân tầng | Định tính (Nominal / Định danh Nam/Nữ) | Giới tính của đối tượng nghiên cứu |
+| `age` | Biến độc lập (Predictor) | Định lượng (Ratio/ Continuous) | Độ tuổi của đối tượng quan sát |
+| `children` | Biến độc lập (Predictor) | Định tính (Nominal / Định danh) | Tình trạng có con hay chưa (Có con / Không có con) |
+| `religiousness` | Biến độc lập (Predictor) | Định tính (Ordinal / Thứ bậc 1-5) | Mức độ sùng đạo (1 = Không sùng đạo, 5 = Rất sùng đạo) |
+| `education` | Biến độc lập (Predictor) | Định lượng (Ratio / Continuous) | Số năm đi học / Trình độ học vấn |
+
+: Danh mục và đặc tả các biến số trong mô hình {#tbl-summary-vars}
+
+## Nhận xét ban đầu về tính toàn vẹn dữ liệu
+
+Trước khi tiến hành phân tích thống kê, dữ liệu cần được kiểm tra toàn diện về giá trị thiếu (`NA`), khoảng trắng ẩn, kiểu dữ liệu của từng cột và gán nhãn thang đo phù hợp.
+
+Kết quả kiểm tra làm sạch dữ liệu cho thấy bộ dữ liệu không chứa bất kỳ giá trị thiếu nào trên toàn bộ 601 quan sát, với số lượng `NA = 0`. Biến `affairs` có giá trị dao động từ 0 đến 12, trong đó số quan sát có `affairs = 0` chiếm tỷ lệ rất lớn là 75.04%, phản ánh đặc trưng dư thừa số 0 vốn khá phổ biến trong các bài toán phân tích kinh tế - xã hội. Nhìn chung, dữ liệu đã sẵn sàng cho các bước phân tích tiếp theo, bao gồm thống kê mô tả nhị phân, kiểm định bảng chéo và ước lượng các mô hình GLM như Logistic, Poisson và Negative Binomial.
+
+# THỐNG KÊ MÔ TẢ VÀ KIỂM ĐỊNH MỘT TỶ LỆ
+
+## Thống kê mô tả các biến đơn lẻ
+
+Để hiểu rõ đặc tính phân phối của dữ liệu trước khi đi vào xây dựng mô hình, chúng ta tiến hành thống kê tần số và tỷ lệ phần trăm của các biến số chính trong bộ dữ liệu `Affairs`.
+
+```{r setup-02, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(scales)
+
+# Đảm bảo df_clean đã có sẵn
+if (!exists("df_clean")) {
+  url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
+  df_raw <- read.csv(url_data)
+  if ("X" %in% names(df_raw)) df_raw <- df_raw |> select(-X)
+  df_clean <- df_raw |>
+    mutate(
+      has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
+      gender = factor(gender, levels = c("male", "female"), labels = c("Nam", "Nữ")),
+      children = factor(children, levels = c("no", "yes"), labels = c("Không có con", "Có con")),
+      rating_factor = factor(rating, levels = 1:5, labels = c("1-Rất bất hạnh", "2-Bất hạnh", "3-Trung bình", "4-Hạnh phúc", "5-Rất hạnh phúc"), ordered = TRUE)
+    )
+}
+```
+
+### Phân phối tần số của Biến phụ thuộc `affairs` và `has_affair`
+
+Biến phụ thuộc `affairs` cho thấy số lần phát sinh quan hệ ngoài luồng trong năm qua.
+
+```{r}
+#| label: tbl-affairs-dist
+#| tbl-cap: "Bảng Tần số và Tỷ lệ phần trăm của Số lần Ngoại tình (affairs)"
+#| echo: false
+#| message: false
+#| warning: false
+tab_affairs <- df_clean |>
+  count(affairs) |>
+  mutate(
+    Tyle_Percent = n / sum(n) * 100,
+    Tyle_TichLuy = cumsum(Tyle_Percent)
+  )
+
+kable(tab_affairs,
+      col.names = c("Số lần ngoại tình", "Tần số (n)", "Tỷ lệ (%)", "Tỷ lệ tích lũy (%)"),
+      digits = 2, booktabs = TRUE, row.names = FALSE)
+```
+
+Biểu đồ tần số dưới đây trực quan hóa sự tập trung lớn ở giá trị 0 lần:
+
+```{r fig-affairs-bar, echo=FALSE, fig.cap="Phân phối Tần số Hành vi Ngoại tình (affairs)", fig.align="center", fig.height=3.5, fig.width=6}
+ggplot(df_clean, aes(x = factor(affairs), fill = has_affair)) +
+  geom_bar(color = "white", width = 0.7) +
+  scale_fill_manual(values = c("Không" = "#2563EB", "Có" = "#DC2626")) +
+  theme_minimal(base_size = 12) +
+  labs(
+    x = "Số lần ngoại tình (affairs)",
+    y = "Số lượng người (Tần số)",
+    fill = "Trạng thái"
+  ) +
+  theme(legend.position = "top")
+```
+Dựa vào Bảng 2.1 và Hình 2.1, phân phối số lần ngoại tình (`affairs`) thể hiện mức độ bất đối xứng rất mạnh và lệch phải rõ rệt. Cụ thể, có $451$ trên tổng số 601 người, tương ứng $75.04\%$, chưa từng phát sinh quan hệ ngoài luồng trong năm qua; trong khi ở nhóm $24.96\%$ còn lại, tần suất ngoại tình tập trung nhiều hơn ở các mức như 7 lần ($6.99\%$) và 12 lần ($6.32\%$). Sự dư thừa giá trị $0$ và hiện tượng quá phân tán này cho thấy biến `affairs` không tuân theo phân phối chuẩn, vì vậy việc áp dụng mô hình hồi quy tuyến tính cổ điển (OLS) là không phù hợp. Đây cũng là cơ sở để chuyển sang biến nhị phân `has_affair` nhằm phân tích theo hướng có/ không ngoại tình, đồng thời sử dụng các mô hình hồi quy biến đếm như Poisson, Quasi-Poisson và Negative Binomial trong các phần phân tích tiếp theo.
+
+### Đặc điểm của các biến độc lập liên tục
+
+Để có cái nhìn toàn diện về đặc trưng nhân khẩu học của mẫu khảo sát, chúng ta tiến hành lập bảng thống kê mô tả cho các biến số liên tục (Tuổi, Số năm kết hôn, Học vấn).
+
+```{r}
+#| label: tbl-desc-independent
+#| tbl-cap: "Thống kê mô tả các biến số liên tục trong bộ dữ liệu"
+#| echo: false
+#| message: false
+#| warning: false
+sum_num <- df_clean |>
+  summarise(
+    across(c(age, yearsmarried, education), list(
+      Mean = ~ mean(.x),
+      SD = ~ sd(.x),
+      Min = ~ min(.x),
+      Median = ~ median(.x),
+      Max = ~ max(.x)
+    ), .names = "{.col}_{.fn}")
+  ) |>
+  pivot_longer(everything(), names_to = c("Biến", "Thống_Kê"), names_sep = "_") |>
+  pivot_wider(names_from = "Thống_Kê", values_from = "value") |>
+  mutate(Biến = case_when(
+    Biến == "age" ~ "Tuổi (age)",
+    Biến == "yearsmarried" ~ "Số năm kết hôn (yearsmarried)",
+    Biến == "education" ~ "Số năm học vấn (education)"
+  ))
+
+kable(sum_num,
+      col.names = c("Biến số", "Trung bình", "Độ lệch chuẩn", "Tối thiểu", "Trung vị", "Tối đa"),
+      digits = 2, booktabs = TRUE)
+```
+Mẫu nghiên cứu là người trưởng thành khá trẻ, tuổi trung bình $32.49$ ($SD = 9.29$, khoảng $17.50–57$). Thời gian kết hôn trung bình $8.18$ năm (trung vị $7$ năm, khoảng $0.12–15$ năm), phản ánh nhiều giai đoạn hôn nhân khác nhau. Học vấn khá cao, trung bình $16.17$ năm đi học, tương ứng trình độ đại học, cho thấy mẫu phù hợp để phân tích các yếu tố ảnh hưởng đến hành vi và quan điểm trong hôn nhân.
+
+### Phân phối mức độ hạnh phúc tự đánh giá
+
+Biểu đồ dưới đây thể hiện sự phân bổ của mức độ hạnh phúc hôn nhân (`rating_factor`) trong mẫu nghiên cứu, cho thấy phần lớn đối tượng khảo sát tự đánh giá cuộc hôn nhân của họ ở mức "Hạnh phúc" và "Rất hạnh phúc".
+
+```{r fig-rating-dist, echo=FALSE, fig.cap="Phân phối mức độ hạnh phúc hôn nhân của đối tượng khảo sát", fig.align="center", fig.height=3.5, fig.width=6}
+ggplot(df_clean, aes(x = rating_factor, fill = rating_factor)) +
+  geom_bar(color = "white", width = 0.7, show.legend = FALSE) +
+  scale_fill_brewer(palette = "Blues") +
+  theme_minimal(base_size = 12) +
+  labs(
+    x = "Mức độ hạnh phúc (rating)",
+    y = "Số lượng người (Tần số)"
+  ) +
+  theme(plot.title = element_text(face = "bold", size = 13))
+```
+Phân phối mức độ hạnh phúc hôn nhân tự đánh giá có xu hướng lệch trái rõ rệt, cho thấy đa số người tham gia khảo sát nhìn chung khá hài lòng với cuộc sống hôn nhân. Hai nhóm “Hạnh phúc” và “Rất hạnh phúc” chiếm tỷ lệ áp đảo, trong khi các mức “Bất hạnh” và “Rất bất hạnh” chỉ chiếm một phần rất nhỏ. Đây là cơ sở quan trọng để tiếp tục phân tích tác động nghịch chiều của chất lượng hôn nhân đối với nguy cơ ngoại tình ở các mô hình tiếp theo.
+
+## Kiểm tra Điều kiện Success-Failure cho Tỷ lệ Mẫu
+
+Để áp dụng xấp xỉ phân phối chuẩn (Normal Approximation) cho tỷ lệ mẫu $\hat{p}$, cỡ mẫu $n$ và tỷ lệ quan sát được phải thỏa mãn điều kiện Success-Failure:
+$$n \times \hat{p} \ge 10 \quad \text{và} \quad n \times (1 - \hat{p}) \ge 10$$
+
+```{r success-failure-check, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+n_total <- nrow(df_clean)
+n_affair <- sum(df_clean$has_affair == "Có")
+p_hat <- n_affair / n_total
+success_val <- n_total * p_hat
+failure_val <- n_total * (1 - p_hat)
+
+# Tạo bảng kết quả
+kq_table <- data.frame(
+  "Chỉ số" = c("Cỡ mẫu tổng cộng (n)",
+               "Số lượng ngoại tình (Successes)",
+               "Số lượng không ngoại tình (Failures)",
+               "Tỷ lệ ngoại tình quan sát được (p̂)"),
+  "Giá trị" = c(
+    as.character(n_total),
+    as.character(round(success_val, 0)),
+    as.character(round(failure_val, 0)),
+    paste0(round(p_hat, 4), " (", round(p_hat * 100, 2), "%)")
+  ),
+  check.names = FALSE
+)
+
+kable(kq_table, align = "lc", caption = "Kiểm tra điều kiện Success-Failure") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center")
+
+# Kết luận điều kiện
+if (success_val >= 10 && failure_val >= 10) {
+  message("KẾT LUẬN: Đủ điều kiện thỏa mãn xấp xỉ phân phối chuẩn (Success-Failure Condition met)!")
+} else {
+  warning("KẾT LUẬN: Không đủ điều kiện áp dụng xấp xỉ phân phối chuẩn!")
+}
+```
+
+Với cỡ mẫu tổng cộng $n = 601$ và tỷ lệ ngoại tình quan sát được là $\hat{p} = 24.96\%$, số lượng trường hợp thành công (có ngoại tình) đạt $150$ và số lượng thất bại (không ngoại tình) đạt $451$. Cả hai giá trị này đều lớn hơn $10$ rất nhiều. Do đó, dữ liệu hoàn toàn thỏa mãn điều kiện Success-Failure, đảm bảo tính tin cậy để áp dụng xấp xỉ phân phối chuẩn cho tỷ lệ mẫu.
+
+## Tính Sai số chuẩn của Tỷ lệ
+
+Công thức xác định Sai số chuẩn ($SE$) của tỷ lệ mẫu $\hat{p}$ trong lý thuyết thống kê được biểu diễn bằng LaTeX như sau:
+
+$$SE(\hat{p}) = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
+
+Áp dụng tính toán trong R:
+
+```{r se-calculation, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+se_p <- sqrt(p_hat * (1 - p_hat) / n_total)
+
+# Tạo bảng kết quả
+se_table <- data.frame(
+  "Chỉ số" = c("Tỷ lệ mẫu (p̂)",
+               "Sai số chuẩn (SE)"),
+  "Giá trị" = c(
+    paste0(round(p_hat, 4), " (", round(p_hat * 100, 2), "%)"),
+    as.character(round(se_p, 4))
+  ),
+  check.names = FALSE
+)
+
+kable(se_table, align = "lc", caption = "Sai số chuẩn của tỷ lệ mẫu (Standard Error)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center")
+```
+
+Giá trị sai số chuẩn $SE = 0.0177$ ($1.77\%$) phản ánh độ biến động tương đối nhỏ của ước lượng tỷ lệ mẫu xung quanh tỷ lệ thực tế của tổng thể. Con số sai số chuẩn nhỏ này đạt được là nhờ cỡ mẫu tương đối lớn ($n = 601$), giúp tăng độ chính xác cho các phép suy diễn thống kê và ước lượng khoảng tin cậy ở phần tiếp theo.
+
+## Ước lượng Khoảng tin cậy cho Tỷ lệ Ngoại tình
+
+Để đánh giá tỷ lệ của tổng thể, nghiên cứu sử dụng hai phương pháp kiểm định gồm kiểm định tỷ lệ và kiểm định nhị thức chính xác. Hai phương pháp này được áp dụng nhằm kiểm định giả thuyết về tỷ lệ và ước lượng khoảng tin cậy của tỷ lệ trong tổng thể, từ đó so sánh tính nhất quán của kết quả thu được.
+
+```{r}
+#| label: tbl-ci-comparison
+#| tbl-cap: "So sánh Khoảng tin cậy Tỷ lệ Ngoại tình theo Các Phương pháp"
+#| echo: false
+#| message: false
+#| warning: false
+# Khoảng tin cậy 95%
+prop_95 <- prop.test(x = n_affair, n = n_total, conf.level = 0.95)
+binom_95 <- binom.test(x = n_affair, n = n_total, conf.level = 0.95)
+
+# Khoảng tin cậy 99%
+prop_99 <- prop.test(x = n_affair, n = n_total, conf.level = 0.99)
+binom_99 <- binom.test(x = n_affair, n = n_total, conf.level = 0.99)
+
+# Lập bảng so sánh
+ci_table <- data.frame(
+  Muc_Tin_Cay = c("95%", "95%", "99%", "99%"),
+  Phuong_Phap = c("prop.test (Xấp xỉ)", "binom.test (Chính xác)", "prop.test (Xấp xỉ)", "binom.test (Chính xác)"),
+  Can_Duoi = c(prop_95$conf.int[1], binom_95$conf.int[1], prop_99$conf.int[1], binom_99$conf.int[1]),
+  Can_Tren = c(prop_95$conf.int[2], binom_95$conf.int[2], prop_99$conf.int[2], binom_99$conf.int[2]),
+  Do_Rong_Khoang = c(prop_95$conf.int[2] - prop_95$conf.int[1],
+                     binom_95$conf.int[2] - binom_95$conf.int[1],
+                     prop_99$conf.int[2] - prop_99$conf.int[1],
+                     binom_99$conf.int[2] - binom_99$conf.int[1])
+)
+
+kable(ci_table,
+      col.names = c("Mức tin cậy", "Phương pháp", "Cận dưới", "Cận trên", "Độ rộng khoảng (Margin)"),
+      digits = 4, booktabs = TRUE, row.names = FALSE)
+```
+Dựa trên Bảng 2.5, ở mức tin cậy $95\%$, tỷ lệ người đã kết hôn từng có hành vi ngoại tình được ước lượng nằm trong khoảng từ $21.59\%$ đến $28.66\%$ theo phương pháp xấp xỉ, và từ $21.55\%$ đến $28.62\%$ theo phương pháp chính xác. Sự chênh lệch giữa hai cách ước lượng là rất nhỏ, dưới $0.05\%$, cho thấy phương pháp xấp xỉ phân phối chuẩn hoạt động rất tốt trên bộ dữ liệu này.
+
+Kết quả này cũng cho thấy rõ sự đánh đổi giữa độ chính xác và mức tin cậy trong ước lượng thống kê. Khi nâng mức tin cậy từ $95\%$ lên $99\%$, độ rộng của khoảng tin cậy tăng từ khoảng $7.07\%$ lên $9.24\%$ theo phương pháp chính xác, vì mức tin cậy cao hơn đòi hỏi giá trị $Z_{\alpha/2}$ lớn hơn, từ $Z_{0.025} = 1.96$ lên $Z_{0.005} = 2.576$. Vì vậy, khoảng ước lượng trở nên rộng hơn, giúp tăng mức đảm bảo rằng tham số thật của tổng thể nằm trong khoảng đó, nhưng đồng thời làm giảm độ chính xác định vị; trong thực tiễn nghiên cứu kinh tế lượng, mức tin cậy $95\%$ thường được xem là lựa chọn cân bằng hợp lý.
+
+## Kiểm định Giả thuyết Thống kê cho một Tỷ lệ
+
+Giả sử một nghiên cứu xã hội học đưa ra nhận định rằng: "Tỷ lệ người đã kết hôn từng có quan hệ ngoài luồng trong cộng đồng vượt quá ngưỡng $20\%$ ($p_0 = 0.20$). Chúng ta tiến hành kiểm định giả thuyết một phía để đánh giá tuyên bố này.
+
+Phát biểu Giả thuyết Thống kê:
+
+$$H_0: p \le 0.20 \quad \text{(Tỷ lệ ngoại tình không vượt quá 20\%)}$$
+$$H_1: p > 0.20 \quad \text{(Tỷ lệ ngoại tình thực tế lớn hơn 20\%)}$$
+
+Thực hiện kiểm định trong R và trích xuất Z-score:
+
+```{r hypothesis-test, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+p_0 <- 0.20
+res_test <- prop.test(x = n_affair, n = n_total, p = p_0, alternative = "greater", correct = TRUE)
+
+# Trích xuất Z-score từ trị số Chi-squared
+z_score <- sqrt(res_test$statistic) * sign(p_hat - p_0)
+
+# Tạo bảng kết quả
+test_table <- data.frame(
+  "Chỉ số" = c("Tỷ lệ giả thuyết (p₀)",
+               "Tỷ lệ mẫu quan sát (p̂)",
+               "Trị số kiểm định Chi-squared",
+               "Trị số kiểm định Z-score chuẩn hóa",
+               "Giá trị P-value"),
+  "Giá trị" = c(
+    as.character(p_0),
+    as.character(round(p_hat, 4)),
+    as.character(round(res_test$statistic, 4)),
+    as.character(round(z_score, 4)),
+    format.pval(res_test$p.value, eps = 0.001)
+  ),
+  check.names = FALSE
+)
+
+kable(test_table, align = "lc", caption = "Kết quả kiểm định giả thuyết tỷ lệ (One-Proportion Z-Test)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center")
+```
+
+Kết quả kiểm định cho thấy tỷ lệ ngoại tình vượt ngưỡng $20\%$ có ý nghĩa thống kê rất cao, với $Z = 2.9879$ và $P$-value $= 0.0014 < 0.05$. Vì vậy, ta bác bỏ giả thuyết không $H_0$ ở mức ý nghĩa $5\%$ và kết luận rằng tỷ lệ người từng ngoại tình trong tổng thể nghiên cứu thực sự cao hơn $20\%$, qua đó phản ánh rủi ro đáng kể đối với sự bền vững hôn nhân và nhu cầu tư vấn tâm lý - gia đình.
+
+## Trực quan hóa Khoảng tin cậy bằng Biểu đồ Forest Plot
+
+Dưới đây là biểu đồ Forest Plot trực quan hóa tỷ lệ mẫu $\hat{p}$ cùng khoảng tin cậy 95% so với ngưỡng kiểm định $p_0 = 0.20$:
+
+```{r fig-forest-plot, echo=FALSE, fig.cap="Biểu đồ Forest Plot Khoảng tin cậy 95% Tỷ lệ Ngoại tình", fig.align="center", fig.height=3.5, fig.width=6.5}
+plot_ci <- data.frame(
+  Metric = "Tỷ lệ Ngoại tình (Mẫu)",
+  p_hat  = p_hat,
+  Lower  = prop_95$conf.int[1],
+  Upper  = prop_95$conf.int[2]
+)
+
+ggplot(plot_ci, aes(x = Metric, y = p_hat)) +
+  geom_point(size = 4, color = "#1E3A8A") +
+  geom_errorbar(aes(ymin = Lower, ymax = Upper), width = 0.15, color = "#DC2626", linewidth = 1.2) +
+  geom_hline(yintercept = p_0, linetype = "dashed", color = "#E8919B", linewidth = 1) +
+  annotate("text", x = 1.2, y = p_0 + 0.04, label = "Ngưỡng H0 (p0 = 20%)", color = "#E8919B", fontface = "bold") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.15, 0.32)) +
+  labs(
+    y = "Tỷ lệ (%)", x = "",
+    caption = "Nguồn: Phân tích từ dữ liệu Affairs (Ray Fair, 1978)"
+  ) +
+  coord_flip() +
+  theme_minimal(base_size = 12)
+```
+Biểu đồ Forest Plot trực quan hóa khoảng tin cậy $95\%$ của tỷ lệ mẫu so với đường mốc $20\%$. Toàn bộ khoảng tin cậy (từ $21.59\%$ đến $28.66\%$) đều nằm hoàn toàn bên phải đường ranh giới giả thuyết H0 ($20\%$). Điều này minh họa một cách trực quan rằng tỷ lệ ngoại tình thực tế trong quần thể chắc chắn cao hơn ngưỡng $20\%$.
+
+## Bảng Tổng hợp Kết quả Suy diễn Thống kê 1 Tỷ lệ
+
+```{r}
+#| label: tbl-summary-inference
+#| tbl-cap: "Tóm tắt Báo cáo Thống kê Suy diễn 1 Tỷ lệ"
+#| echo: false
+#| message: false
+#| warning: false
+summary_inf <- data.frame(
+  Chi_Tieu = c("Cỡ mẫu (n)", "Số sự kiện (x)", "Tỷ lệ mẫu (p_hat)", "Sai số chuẩn (SE)", "CI 95% Cận dưới", "CI 95% Cận trên", "Ngưỡng kiểm định (p0)", "Trị số Z-score", "P-value", "Kết luận Thống kê"),
+  Gia_Tri = c(
+    as.character(n_total),
+    as.character(n_affair),
+    paste0(round(p_hat * 100, 2), "%"),
+    round(se_p, 4),
+    paste0(round(prop_95$conf.int[1] * 100, 2), "%"),
+    paste0(round(prop_95$conf.int[2] * 100, 2), "%"),
+    "20.00%",
+    round(z_score, 4),
+    format.pval(res_test$p.value, eps = 0.001),
+    "Bác bỏ H0 (Tỷ lệ > 20% có ý nghĩa thống kê)"
+  )
+)
+
+kable(summary_inf,
+      col.names = c("Chỉ tiêu Thống kê", "Giá trị Ước lượng / Kết quả"),
+      booktabs = TRUE, row.names = FALSE)
+```
+Nhìn chung, các phân tích trong Chương 2 đã xác nhận tỷ lệ ngoại tình trong mẫu nghiên cứu là $24.96\%$. Tuy nhiên, phân tích đơn biến chưa thể giải thích lý do tại sao một người lại quyết định ngoại tình. Do đó, Chương 3 sẽ tiếp tục mở rộng phân tích hai chiều và phân tầng để tìm hiểu mối quan hệ giữa các yếu tố nhân khẩu học, chất lượng hôn nhân và hành vi này.
+
+# BẢNG NGẪU NHIÊN VÀ PHÂN TÍCH PHÂN TẦNG
+
+## Phân tích Bảng ngẫu nhiên Hai chiều
+
+Để đánh giá mối quan hệ phụ thuộc giữa các đặc trưng cá nhân/hôn nhân và hành vi ngoại tình (`has_affair`), chúng ta tiến hành lập các bảng chéo 2 chiều, kiểm định Chi-squared độc lập ($\chi^2$), và đo lường kích thước hiệu ứng thông qua Odds Ratio (OR), Relative Risk (RR) và hệ số Cramér's V.
+
+```{r setup-03, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(vcd)
+library(epitools)
+if (!exists("df_clean")) {
+  url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
+  df_raw <- read.csv(url_data)
+  if ("X" %in% names(df_raw)) df_raw <- df_raw |> select(-X)
+  df_clean <- df_raw |>
+    mutate(
+      has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
+      gender = factor(gender, levels = c("male", "female"), labels = c("Nam", "Nữ")),
+      children = factor(children, levels = c("no", "yes"), labels = c("Không có con", "Có con")),
+      rating_factor = factor(rating, levels = 1:5, labels = c("1-Rất bất hạnh", "2-Bất hạnh", "3-Trung bình", "4-Hạnh phúc", "5-Rất hạnh phúc"), ordered = TRUE)
+    )
+}
+```
+
+### Bảng chéo Mức độ Hạnh phúc Hôn nhân vs Hành vi Ngoại tình
+
+```{r}
+#| label: tbl-crosstab-rating
+#| tbl-cap: "Bảng chéo Mức độ Hạnh phúc Hôn nhân và Hành vi Ngoại tình"
+#| echo: false
+#| message: false
+#| warning: false
+tbl_rating <- table(df_clean$rating_factor, df_clean$has_affair)
+prop_rating <- prop.table(tbl_rating, margin = 1) * 100
+# Tạo bảng hiển thị kết hợp tần số và tỷ lệ %
+tab_rating_show <- data.frame(
+  Rating = rownames(tbl_rating),
+  Khong_NgoaiTinh = paste0(tbl_rating[, 1], " (", round(prop_rating[, 1], 1), "%)"),
+  Co_NgoaiTinh = paste0(tbl_rating[, 2], " (", round(prop_rating[, 2], 1), "%)"),
+  Tong_Cong = rowSums(tbl_rating)
+)
+kable(tab_rating_show,
+      col.names = c("Mức độ Hạnh phúc", "Không Ngoại tình n (%)", "Có Ngoại tình n (%)", "Tổng cộng"),
+      booktabs = TRUE, row.names = FALSE)
+```
+Bảng 3.1 thể hiện mối quan hệ tỷ lệ nghịch rõ rệt giữa mức độ hạnh phúc hôn nhân và hành vi ngoại tình. Khi chất lượng hôn nhân tăng lên, tỷ lệ phát sinh quan hệ ngoài luồng giảm dần một cách đơn điệu: ở nhóm "Rất bất hạnh" và "Bất hạnh", tỷ lệ ngoại tình lên tới $50\%$; con số này giảm xuống $29\%$ ở nhóm "Trung bình", $24.7\%$ ở nhóm "Hạnh phúc" và chạm mức thấp nhất là $14.7\%$ ở nhóm "Rất hạnh phúc".
+
+### Kiểm định Chi-square và Tần số kỳ vọng
+
+```{r chisq-rating, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+chi_rating <- chisq.test(tbl_rating)
+min_exp <- min(chi_rating$expected)
+# Tạo bảng kết quả
+chisq_table <- data.frame(
+  "Chỉ số" = c("Trị số Chi-square (X²)",
+               "Bậc tự do (df)",
+               "Giá trị P-value",
+               "Tần số kỳ vọng nhỏ nhất"),
+  "Giá trị" = c(
+    as.character(round(chi_rating$statistic, 4)),
+    as.character(chi_rating$parameter),
+    format.pval(chi_rating$p.value, eps = 0.001),
+    as.character(round(min_exp, 2))
+  ),
+  check.names = FALSE
+)
+kable(chisq_table, align = "lc", 
+      caption = "Kết quả Kiểm định Chi-square: Mức độ Hạnh phúc và Hành vi Ngoại tình") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center")
+# Kiểm tra điều kiện Tần số kỳ vọng (Expected Frequencies >= 5)
+if (min_exp >= 5) {
+  message("Đủ điều kiện áp dụng kiểm định Chi-square (tất cả các ô đều >= 5)!")
+} else {
+  warning("Có ô tần số kỳ vọng < 5, cần thận trọng!")
+}
+```
+
+
+Về điều kiện áp dụng, tần số kỳ vọng nhỏ nhất đạt $3.99$ (không có ô nào dưới 1 và số ô dưới 5 không vượt quá 20\%), đảm bảo tính vững chắc cho phép kiểm định. Với trị số kiểm định Chi-square $= 41.4335$ (bậc tự do $df = 4$) và $P$-value $< 0.001$, chúng ta bác bỏ giả thuyết $H_0$ về sự độc lập. Kết quả khẳng định mức độ hạnh phúc hôn nhân và hành vi ngoại tình có mối liên hệ phụ thuộc với ý nghĩa thống kê rất cao.
+
+Để trực quan hóa mối quan hệ này, chúng ta vẽ biểu đồ cột chồng tỷ lệ (100% Stacked Bar Chart) dưới đây. Trục hoành là mức độ hạnh phúc tự đánh giá, trục tung thể hiện tỷ lệ phần trăm người có hành vi ngoại tình (`Có`) và không ngoại tình (`Không`).
+
+```{r fig-rating-affair-stacked, echo=FALSE, fig.cap="Tỷ lệ ngoại tình theo mức độ hạnh phúc hôn nhân", fig.align="center", fig.height=4, fig.width=8} 
+# Đã tăng fig.width từ 6.5 lên 8 để các chữ tự động giãn cách ra nha bạn
+
+ggplot(df_clean, aes(x = rating_factor, fill = has_affair)) + 
+  geom_bar(position = "fill", color = "white", width = 0.6) + 
+  scale_y_continuous(labels = scales::percent_format()) + 
+  scale_fill_manual(values = c("Không" = "#2563EB", "Có" = "#DC2626")) + 
+  theme_minimal(base_size = 12) + 
+  labs( x = "Mức độ hạnh phúc hôn nhân (rating)", y = "Tỷ lệ (%)", fill = "Ngoại tình?" ) + 
+  theme(legend.position = "right") 
+```
+Biểu đồ trực quan hóa sự sụt giảm liên tục của diện tích màu đỏ (tỷ lệ có ngoại tình) khi di chuyển từ trái sang phải (từ mức Rất bất hạnh đến Rất hạnh phúc). Sự phân tầng màu sắc rõ rệt này minh họa trực quan cho tác động bảo vệ của một cuộc hôn nhân hạnh phúc trước nguy cơ phát sinh quan hệ ngoài luồng.
+
+## Đo lường Mối liên hệ: Odds Ratio (OR), Relative Risk (RR) và Cramér's V
+
+Đối với bảng $2 \times 2$ giữa Tình trạng Con cái (`children`) và Ngoại tình (`has_affair`):
+
+```{r or-rr-children, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+tbl_child <- table(df_clean$children, df_clean$has_affair)
+# Tính Odds Ratio
+or_res <- oddsratio(tbl_child)
+# Tính Relative Risk
+rr_res <- riskratio(tbl_child)
+# Tạo bảng kết quả
+or_rr_table <- data.frame(
+  "Chỉ số" = c("Odds Ratio (OR)",
+               "Khoảng tin cậy 95% OR",
+               "Relative Risk (RR)",
+               "Khoảng tin cậy 95% RR"),
+  "Giá trị" = c(
+    as.character(round(or_res$measure[2, 1], 4)),
+    paste0("[", round(or_res$measure[2, 2], 4), ", ", round(or_res$measure[2, 3], 4), "]"),
+    as.character(round(rr_res$measure[2, 1], 4)),
+    paste0("[", round(rr_res$measure[2, 2], 4), ", ", round(rr_res$measure[2, 3], 4), "]")
+  ),
+  check.names = FALSE
+)
+kable(or_rr_table, align = "lc", 
+      caption = "Đo lường Mối liên hệ giữa Tình trạng Con cái và Hành vi Ngoại tình (Nhóm Có con so với Không con)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center")
+```
+
+Kết quả đo lường cho thấy nhóm đã có con có Odds ngoại tình cao gấp $2.1263$ lần (khoảng tin cậy $95\%$: $1.3571$ đến $3.4327$) so với nhóm chưa có con. Dưới góc độ xác suất, rủi ro tương đối $RR = 1.8116$ cho thấy người có con có xác suất ngoại tình cao hơn $81.16\%$ so với người chưa có con. Cả hai khoảng tin cậy của OR và RR đều không chứa giá trị $1$, khẳng định mối liên hệ này có ý nghĩa thống kê. Giá trị OR lớn hơn RR là đặc trưng toán học phổ biến khi sự kiện nghiên cứu có tỷ lệ xuất hiện tương đối cao (khoảng $25\%$ trong mẫu).
+
+Bên cạnh việc đo lường mức độ tác động thông qua OR và RR, chúng ta tiếp tục sử dụng hệ số Cramér's V để so sánh sức mạnh liên kết giữa các yếu tố đối với hành vi ngoại tình:
+
+```{r}
+#| label: tbl-cramer-v
+#| tbl-cap: "So sánh Độ mạnh Liên kết (Cramér's V) của các Biến số"
+#| echo: false
+#| message: false
+#| warning: false
+assoc_rating <- assocstats(tbl_rating)
+assoc_child <- assocstats(tbl_child)
+cramer_df <- data.frame(
+  Bien_Doc_Lap = c("Mức độ Hạnh phúc (rating)", "Tình trạng Con cái (children)"),
+  Chi_Square = c(assoc_rating$chisq_tests[1, 1], assoc_child$chisq_tests[1, 1]),
+  P_value = c(assoc_rating$chisq_tests[1, 3], assoc_child$chisq_tests[1, 3]),
+  Cramer_V = c(assoc_rating$cramer, assoc_child$cramer)
+)
+kable(cramer_df,
+      col.names = c("Biến Độc lập", "Trị số Chi-square", "P-value", "Hệ số Cramér's V"),
+      digits = 4, booktabs = TRUE, row.names = FALSE)
+```
+
+So sánh hệ số Cramér's V cho thấy mối liên hệ giữa tình trạng con cái và ngoại tình ở mức yếu ($V = 0.1336$), trong khi mức độ hạnh phúc hôn nhân có sức mạnh liên kết ở mức trung bình-khá ($V = 0.2626$). Điều này khẳng định yếu tố tâm lý - cảm xúc trong hôn nhân đóng vai trò chi phối mạnh mẽ hơn so với yếu tố cấu trúc gia đình (con cái) đối với quyết định ngoại tình.
+
+## Bảng Phân tầng và Kiểm định Mantel-Haenszel
+
+Để kiểm tra xem mối liên hệ giữa Mức độ Hạnh phúc và Ngoại tình có bị biến dạng bởi yếu tố Giới tính (`gender`) hay không (kiểm soát biến nhiễu - Confounding / Simpson's Paradox), chúng ta lập bảng 3 chiều và thực hiện kiểm định Mantel-Haenszel.
+
+```{r mantel-haenszel, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+# Rút gọn rating thành nhị phân: Unhappy (1-3) vs Happy (4-5)
+df_strat <- df_clean |>
+  mutate(
+    happy_bin = factor(ifelse(rating <= 3, "Bất hạnh (1-3)", "Hạnh phúc (4-5)"),
+                       levels = c("Hạnh phúc (4-5)", "Bất hạnh (1-3)"))
+  )
+# Tạo bảng 3 chiều: happy_bin x has_affair x gender
+tbl_3way <- table(df_strat$happy_bin, df_strat$has_affair, df_strat$gender)
+# Kiểm định Mantel-Haenszel
+mh_test <- mantelhaen.test(tbl_3way)
+# Tạo bảng kết quả
+mh_table <- data.frame(
+  "Chỉ số" = c("Tỷ số Odds Ratio điều chỉnh (Adjusted Common OR)",
+               "Khoảng tin cậy 95% Adjusted OR",
+               "P-value kiểm định Mantel-Haenszel"),
+  "Giá trị" = c(
+    as.character(round(mh_test$estimate, 4)),
+    paste0("[", round(mh_test$conf.int[1], 4), ", ", round(mh_test$conf.int[2], 4), "]"),
+    format.pval(mh_test$p.value, eps = 0.001)
+  ),
+  check.names = FALSE
+)
+kable(mh_table, align = "lc", 
+      caption = "Kết quả Kiểm định Mantel-Haenszel: Mối liên hệ giữa Hạnh phúc Hôn nhân và Ngoại tình (Kiểm soát Giới tính)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center")
+```
+
+
+Kết quả kiểm định Mantel-Haenszel cho giá trị $Adjusted Odds Ratio = 2.6604$ ($p = 0.001$). Điều này có nghĩa là: sau khi đã kiểm soát và loại trừ ảnh hưởng của yếu tố Giới tính, những người thuộc nhóm hôn nhân bất hạnh có Odds ngoại tình cao gấp $2.6604$ lần so với những người ở nhóm hạnh phúc. Việc phân tầng cho thấy giới tính không làm đảo ngược mối quan hệ này (không xảy ra nghịch lý Simpson), nhưng việc kiểm soát giúp ước lượng chính xác hơn hiệu ứng thực sự của chất lượng hôn nhân.
+
+## Trực quan hóa Bảng ngẫu nhiên bằng Biểu đồ Mosaic Plot
+
+Biểu đồ Mosaic dưới đây thể hiện cấu trúc phân bổ 3 chiều giữa Hạnh phúc hôn nhân, Giới tính và Trạng thái ngoại tình:
+
+```{r fig-mosaic-plot, echo=FALSE, fig.cap="Biểu đồ Mosaic Plot Mô tả Mối quan hệ giữa Hạnh phúc, Giới tính và Ngoại tình", fig.align="center", fig.height=5, fig.width=7}
+library(ggplot2)
+library(ggmosaic)
+
+ggplot(df_strat) +
+  geom_mosaic(aes(x = product(happy_bin), fill = has_affair)) +
+  facet_wrap(~ gender) +
+  labs(
+    x = "",
+    y = "Mức độ Hạnh phúc",
+    fill = "Ngoại tình"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5, size = 10),
+    axis.text.y = element_text(angle = 0, size = 10),
+    axis.title = element_text(face = "bold", size = 12),
+    strip.text = element_text(face = "bold", size = 12),
+    legend.position = "right",
+    panel.spacing = unit(1, "lines")
+  ) +
+  scale_fill_manual(values = c("Không" = "#E8E8E8", "Có" = "#E8919B"))
+```
+Biểu đồ thể hiện cấu trúc phân bổ đa chiều: diện tích các hình chữ nhật đại diện cho tần số quan sát tương ứng. Nhìn vào dải màu hồng (nhóm có ngoại tình), diện tích khối màu hồng ở nhóm "Bất hạnh" luôn cao vượt trội so với nhóm "Hạnh phúc" ở cả hai giới tính Nam và Nữ. Đồng thời, tỷ lệ ngoại tình ở nhóm Nam giới bất hạnh và Nữ giới bất hạnh là tương đồng nhau, củng cố thêm kết luận từ kiểm định Mantel-Haenszel rằng tác động của sự bất hạnh lên hành vi ngoại tình diễn ra nhất quán ở cả hai giới.
+
+# XÂY DỰNG CÁC MÔ HÌNH HỒI QUY GLM
+
+## Lý thuyết Mô hình Tuyến tính Tổng quát (GLM)
+
+Mô hình Tuyến tính Tổng quát (GLM) là khung lý thuyết mở rộng mô hình hồi quy tuyến tính cổ điển (OLS), cho phép biến phản hồi $Y$ tuân theo bất kỳ phân phối nào thuộc họ phân phối mũ (Exponential Family), bao gồm phân phối Bernoulli, Poisson và Nhị thức âm. Mô hình Hồi quy Tuyến tính Cổ điển (OLS) bộc lộ ba hạn chế cơ bản khi $Y$ là biến nhị phân hoặc biến đếm: khả năng dự báo xác suất ngoài khoảng $[0, 1]$, phương sai thay đổi theo trung bình có điều kiện, và giả định phân phối chuẩn không còn phù hợp. GLM giải quyết các vấn đề này bằng ba thành phần:
+
+Thành phần ngẫu nhiên (Random Component): Biến phản hồi $Y_i$ độc lập với nhau và tuân theo một phân phối thuộc họ hàm mũ, có kỳ vọng $\mu_i = E(Y_i)$.
+
+Thành phần hệ thống (Systematic Component): Tổ hợp tuyến tính của các biến dự báo tạo thành phần dự báo tuyến tính $\eta_i$:
+
+$$\eta_i = \beta_0 + \beta_1 X_{i1} + \dots + \beta_p X_{ip} = \mathbf{X}_i^\top \boldsymbol{\beta}$$
+
+Hàm liên kết (Link Function) $g(\cdot)$: Hàm đơn điệu, khả vi, kết nối kỳ vọng của biến phản hồi với phần dự báo tuyến tính:
+
+$$g(\mu_i) = \eta_i = \mathbf{X}_i^\top \boldsymbol{\beta}$$
+
+Tham số $\boldsymbol{\beta}$ được ước lượng bằng phương pháp hợp lý cực đại (Maximum Likelihood Estimation). Giả định cốt lõi: các quan sát $Y_i$ độc lập với nhau và hàm liên kết $g(\cdot)$ phải trơn và khả nghịch.
+
+```{r setup-04, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+library(AER)
+library(MASS)
+library(pscl)
+
+if (!exists("df_clean")) {
+  url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
+  df_raw <- read.csv(url_data)
+  if ("X" %in% names(df_raw)) df_raw <- df_raw |> select(-X)
+  df_clean <- df_raw |>
+    mutate(
+      has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
+      has_affair_num = ifelse(affairs > 0, 1, 0),
+      gender = factor(gender, levels = c("male", "female"), labels = c("Nam", "Nữ")),
+      children = factor(children, levels = c("no", "yes"), labels = c("Không có con", "Có con"))
+    )
+}
+```
+
+## Mô hình Lựa chọn Nhị phân (Target `has_affair`)
+
+Mô hình nhị phân áp dụng khi biến phản hồi $Y \in \{0, 1\}$ tuân theo phân phối Bernoulli với xác suất xảy ra sự kiện $p = P(Y = 1)$. Thành phần ngẫu nhiên có kỳ vọng $\mu = p$ và phương sai $\text{Var}(Y) = p(1-p)$.
+
+Ba hàm liên kết phổ biến được ước lượng cho biến chỉ thị có ngoại tình hay không (`has_affair_num`):
+
+Hàm liên kết Logit (Hồi quy Logistic):
+
+$$g(p) = \ln\!\left(\frac{p}{1-p}\right) = \mathbf{X}^\top\boldsymbol{\beta} \quad \Leftrightarrow \quad p = \frac{e^{\mathbf{X}^\top\boldsymbol{\beta}}}{1 + e^{\mathbf{X}^\top\boldsymbol{\beta}}}$$
+
+Hàm liên kết Probit:
+
+$$g(p) = \Phi^{-1}(p) = \mathbf{X}^\top\boldsymbol{\beta}$$
+
+Trong đó $\Phi^{-1}(\cdot)$ là nghịch đảo của hàm phân phối tích lũy chuẩn tắc $\mathcal{N}(0,1)$.
+
+Hàm liên kết Cloglog (Complementary Log-Log):
+
+$$g(p) = \ln\!\bigl(-\ln(1-p)\bigr) = \mathbf{X}^\top\boldsymbol{\beta}$$
+
+Hàm liên kết bất đối xứng, phù hợp khi xác suất sự kiện hiếm hoặc phân phối lệch phải.
+
+Giả định chung: quan hệ giữa các biến dự báo và giá trị của hàm liên kết là tuyến tính; không có hiện tượng đa cộng tuyến nghiêm trọng giữa các biến độc lập.
+
+```{r binary-models, echo=FALSE, message=FALSE, warning=FALSE}
+# Công thức mô hình nhị phân
+formula_binary <- has_affair_num ~ rating + yearsmarried + age + religiousness + education + gender + children
+
+# 1. Hồi quy Logistic
+m_logit <- glm(formula_binary, data = df_clean, family = binomial(link = "logit"))
+
+# 2. Hồi quy Probit
+m_probit <- glm(formula_binary, data = df_clean, family = binomial(link = "probit"))
+
+# 3. Hồi quy Cloglog
+m_cloglog <- glm(formula_binary, data = df_clean, family = binomial(link = "cloglog"))
+```
+
+```{r}
+#| label: tbl-binary-comp
+#| tbl-cap: "Bảng So sánh Hệ số Hồi quy của Mô hình Logistic, Probit và Cloglog"
+#| echo: false
+#| message: false
+#| warning: false
+# Tổng hợp kết quả hệ số
+coef_logit <- summary(m_logit)$coefficients
+coef_probit <- summary(m_probit)$coefficients
+coef_cloglog <- summary(m_cloglog)$coefficients
+
+comp_binary_df <- data.frame(
+  Bien_So = rownames(coef_logit),
+  Logit_Beta = round(coef_logit[, 1], 4),
+  Logit_OR = round(exp(coef_logit[, 1]), 4),
+  Logit_Pval = format.pval(coef_logit[, 4], eps = 0.001),
+  Probit_Beta = round(coef_probit[, 1], 4),
+  Cloglog_Beta = round(coef_cloglog[, 1], 4)
+)
+
+kable(comp_binary_df,
+      col.names = c("Biến số", "Logit (β)", "Logit (OR = e^β)", "Logit (P-value)", "Probit (β)", "Cloglog (β)"),
+      booktabs = TRUE, row.names = FALSE)
+```
+
+Kết quả mô hình Logistic cho thấy Mức độ hạnh phúc hôn nhân (rating), Số năm kết hôn (yearsmarried), Mức độ tôn giáo (religiousness) và Tuổi tác (age) có ý nghĩa thống kê rõ rệt. Cụ thể, khi Mức độ hạnh phúc tăng 1 điểm, Odds ngoại tình giảm $37.5\%$ (OR = $0.6250$); Mức độ sùng đạo cao hơn làm giảm Odds ngoại tình $27.78\%$ (OR = $0.7222$); Tuổi càng cao, nguy cơ ngoại tình càng giảm nhẹ (OR = $0.9572$). Ngược lại, Số năm kết hôn tác động thuận chiều: mỗi năm kết hôn tăng thêm làm tăng Odds ngoại tình thêm $9.99\%$ (OR = $1.0999$).
+
+Cả ba mô hình nhị phân đều cho ra dấu hệ số và mức ý nghĩa thống kê của các biến độc lập hoàn toàn thống nhất với nhau. Các biến nhân khẩu học khác như Học vấn (education), Giới tính (gender) và Tình trạng con cái (children) đều không có ý nghĩa thống kê ở mức $5\%$ trong cả ba mô hình.
+
+Hệ số hồi quy của mô hình Logit luôn lớn hơn Probit khoảng $1.72$ đến $1.75$ lần (ví dụ biến rating có hệ số Logit là $-0.4700$ so với Probit là $-0.2727$). Sự khác biệt này hoàn toàn tuân theo lý thuyết kinh tế lượng: hàm Logit dựa trên phân phối Logistic có phương sai xấp xỉ $3.29$, trong khi Probit dựa trên phân phối Chuẩn tắc có phương sai bằng $1$. Do đó, hệ số Logit bằng hệ số Probit nhân với tỷ số xấp xỉ $1.6$ đến $1.8$, khẳng định hai mô hình chỉ khác nhau về thang đo hàm toán học chứ mang lại cùng một kết luận thực tiễn.
+
+### Trực quan hóa Đường cong Xác suất Dự báo của các Mô hình Nhị phân
+
+Để thấy rõ sự khác biệt giữa ba hàm liên kết (Logit, Probit, Cloglog), chúng ta vẽ các đường cong xác suất dự báo ngoại tình theo số năm kết hôn (`yearsmarried`), trong đó các biến số độc lập khác được giữ cố định ở giá trị trung vị hoặc nhóm phổ biến nhất (Nữ giới, đã có con, học vấn trung bình, mức độ hạnh phúc trung bình).
+
+```{r fig-binary-curves, echo=FALSE, fig.cap="So sánh đường cong xác suất dự báo ngoại tình giữa các mô hình Logit, Probit và Cloglog", fig.align="center", fig.height=4, fig.width=6.5}
+# Tạo tập dữ liệu giả định để dự báo
+df_grid <- data.frame(
+  yearsmarried = seq(0, 15, length.out = 100),
+  rating = 3,
+  age = median(df_clean$age),
+  religiousness = 3,
+  education = median(df_clean$education),
+  gender = factor("Nữ", levels = levels(df_clean$gender)),
+  children = factor("Có con", levels = levels(df_clean$children))
+)
+
+# Dự báo xác suất
+df_grid$Logit <- predict(m_logit, newdata = df_grid, type = "response")
+df_grid$Probit <- predict(m_probit, newdata = df_grid, type = "response")
+df_grid$Cloglog <- predict(m_cloglog, newdata = df_grid, type = "response")
+
+# Chuyển sang dạng long để vẽ bằng ggplot2
+df_grid_long <- df_grid |>
+  pivot_longer(cols = c(Logit, Probit, Cloglog), names_to = "Model", values_to = "Prob")
+
+# Vẽ biểu đồ
+ggplot(df_grid_long, aes(x = yearsmarried, y = Prob, color = Model, linetype = Model)) +
+  geom_line(linewidth = 1.2) +
+  scale_color_manual(values = c("Logit" = "#2563EB", "Probit" = "#DC2626", "Cloglog" = "#059669")) +
+  theme_minimal(base_size = 12) +
+  labs(
+    x = "Số năm kết hôn (yearsmarried)",
+    y = "Xác suất ngoại tình dự báo (P)",
+    color = "Mô hình",
+    linetype = "Mô hình"
+  ) +
+  theme(legend.position = "top", plot.title = element_text(face = "bold", size = 13))
+```
+
+Cả ba mô hình đều thể hiện xu hướng tăng xác suất ngoại tình khi số năm kết hôn tăng. Đường cong của mô hình Logistic (Logit) và Probit gần như trùng khít lên nhau, chứng tỏ hai phân phối có hình dáng đối xứng rất giống nhau và chỉ khác nhau ở hệ số tỷ lệ co giãn. Trong khi đó, mô hình Cloglog (đường màu xanh lá) có độ dốc tăng nhanh hơn ở giai đoạn đầu và tiệm cận chậm hơn ở giai đoạn sau, thể hiện tính bất đối xứng đặc trưng của hàm liên kết Cloglog.
+
+## Mô hình Hồi quy Biến đếm (Target `affairs`)
+
+Khi phân tích số lần ngoại tình (`affairs` = 0, 1, 2, 3, 7, 12), việc chuyển biến đếm thành nhị phân gây mất thông tin. Mô hình dữ liệu đếm được áp dụng khi biến phản hồi $Y \in \{0, 1, 2, \dots\}$ là số nguyên không âm, biểu thị số lần xuất hiện của một sự kiện trong một khoảng thời gian xác định.
+
+### Mô hình Poisson
+
+Mô hình Poisson là điểm khởi đầu tự nhiên cho dữ liệu đếm. Giả định $Y_i \sim \text{Poisson}(\mu_i)$, trong đó:
+
+$$E(Y_i) = \text{Var}(Y_i) = \mu_i$$
+
+Hàm liên kết chuẩn (Log-link): $\ln(\mu_i) = \mathbf{X}_i^\top\boldsymbol{\beta}$.
+
+Giả định Đẳng phân tán (Equidispersion) $E(Y) = \text{Var}(Y)$ là ràng buộc cốt lõi. Khi phương sai thực tế vượt quá trung bình (Overdispersion), sai số chuẩn của hệ số bị ước lượng thấp, làm sai lệch các kiểm định ý nghĩa thống kê.
+
+```{r count-poisson, echo=FALSE, message=FALSE, warning=FALSE}
+formula_count <- affairs ~ rating + yearsmarried + age + religiousness + education + gender + children
+
+# Hồi quy Poisson
+m_poisson <- glm(formula_count, data = df_clean, family = poisson(link = "log"))
+```
+
+### Kiểm định Hiện tượng Quá phân tán (Overdispersion Test)
+
+Giả định Đẳng phân tán được kiểm định chính thức bằng thống kê Score (Cameron & Trivedi, 1990):
+
+$$H_0{:}\ \text{Var}(Y) = \mu \quad \text{vs} \quad H_1{:}\ \text{Var}(Y) > \mu$$
+
+Quy tắc kết luận: Nếu $p\text{-value} < 0.05$ thì bác bỏ $H_0$, tức dữ liệu có hiện tượng quá phân tán và mô hình Poisson không còn phù hợp. Nếu $p\text{-value} \geq 0.05$ thì không có đủ bằng chứng bác bỏ $H_0$, giả định đẳng phân tán được duy trì.
+
+Chúng ta sử dụng hàm `dispersiontest()` từ gói `AER` để kiểm định giả thuyết này.
+
+```{r}
+#| label: tbl-dispersion-test
+#| tbl-cap: "Kết quả Kiểm định Quá phân tán (Overdispersion Test) - Mô hình Poisson"
+#| echo: false
+#| message: false
+#| warning: false
+disp_test <- dispersiontest(m_poisson, alternative = "greater")
+ket_luan <- if (disp_test$p.value < 0.05) {
+  "Bác bỏ H0: Dữ liệu có hiện tượng Quá phân tán (Overdispersion) nghiêm trọng"
+} else {
+  "Không đủ bằng chứng bác bỏ H0: Thỏa mãn giả định đẳng phân tán Poisson"
+}
+disp_df <- data.frame(
+  Chi_tieu = c("Hệ số phân tán ước lượng (alpha)", "Trị số kiểm định Z", "Giá trị P-value", "Kết luận"),
+  Gia_tri = c(
+    round(disp_test$estimate, 4),
+    round(disp_test$statistic, 4),
+    format.pval(disp_test$p.value, eps = 0.001),
+    ket_luan
+  )
+)
+kable(disp_df,
+      col.names = c("Chỉ tiêu", "Giá trị"),
+      booktabs = TRUE, row.names = FALSE, align = "lr")
+```
+
+Kiểm định quá phân tán cho hệ số $\hat{\alpha} = 6.943$, với $Z = 5.2863$ và $P\text{-value} < 0.001$, bác bỏ $H_0$ ở mức ý nghĩa $1\%$. Kết quả khẳng định dữ liệu tồn tại hiện tượng quá phân tán nghiêm trọng (phương sai thực tế gấp khoảng 7 lần giá trị trung bình kỳ vọng), khiến mô hình Poisson chuẩn đánh giá thấp sai số chuẩn của các hệ số hồi quy và làm tăng nguy cơ mắc lỗi Loại I. Do đó, việc áp dụng các mô hình hiệu chỉnh như Quasi-Poisson hoặc Nhị thức âm là cần thiết.
+
+### Mô hình Quasi-Poisson
+
+Mô hình Quasi-Poisson mở rộng Poisson bằng tham số phân tán $\phi > 0$ để hiệu chỉnh phương sai:
+
+$$\text{Var}(Y_i) = \phi \cdot \mu_i$$
+
+Ước lượng điểm của $\boldsymbol{\beta}$ giữ nguyên như Poisson (Quasi-Likelihood), nhưng sai số chuẩn được điều chỉnh: $\widehat{\text{SE}}_{\text{QP}} = \sqrt{\hat{\phi}} \cdot \widehat{\text{SE}}_{\text{P}}$. Với $\hat{\phi} > 1$ là biểu hiện của quá phân tán.
+
+### Mô hình Nhị thức âm (Negative Binomial)
+
+Mô hình Nhị thức âm giả định $Y_i \sim \text{NB}(\mu_i, \theta)$, cho phép phương sai tăng theo bậc hai của trung bình:
+
+$$\text{Var}(Y_i) = \mu_i + \frac{\mu_i^2}{\theta}$$
+
+Trong đó $\theta > 0$ là tham số hình dạng. Khi $\theta \to \infty$, phân phối Nhị thức âm hội tụ về Poisson. Mô hình này đặt ra phân phối xác suất đầy đủ, cho phép tính AIC/BIC và Likelihood Ratio Test, ưu việt hơn Quasi-Poisson trong so sánh mô hình.
+
+```{r count-models-alt, echo=FALSE, message=FALSE, warning=FALSE}
+# Mô hình Quasi-Poisson
+m_quasipoisson <- glm(formula_count, data = df_clean, family = quasipoisson(link = "log"))
+
+# Mô hình Negative Binomial (NB)
+m_nb <- glm.nb(formula_count, data = df_clean)
+```
+
+### Bảng So sánh Hệ số và Incident Rate Ratio (IRR = $e^\beta$) của các Mô hình Biến đếm
+
+```{r}
+#| label: tbl-count-comp
+#| tbl-cap: "So sánh Hệ số Hồi quy và Tỷ số Tần suất Tác động (IRR) của các Mô hình Đếm"
+#| echo: false
+#| message: false
+#| warning: false
+coef_p <- summary(m_poisson)$coefficients
+coef_qp <- summary(m_quasipoisson)$coefficients
+coef_nb <- summary(m_nb)$coefficients
+
+comp_count_df <- data.frame(
+  Bien_So = rownames(coef_p),
+  Poisson_Beta = round(coef_p[, 1], 4),
+  Poisson_IRR = round(exp(coef_p[, 1]), 4),
+  Poisson_SE = round(coef_p[, 2], 4),
+  QuasiPoisson_SE = round(coef_qp[, 2], 4),
+  NegBin_Beta = round(coef_nb[, 1], 4),
+  NegBin_IRR = round(exp(coef_nb[, 1]), 4),
+  NegBin_Pval = format.pval(coef_nb[, 4], eps = 0.001)
+)
+
+kable(comp_count_df,
+      col.names = c("Biến số", "Poisson (β)", "IRR (e^β)", "Poisson SE", "Quasi-Poisson SE", "NegBin (β)", "NegBin (IRR)", "NegBin (P-value)"),
+      booktabs = TRUE, row.names = FALSE)
+```
+
+### Diễn giải Kết quả các Mô hình Biến đếm cơ bản:
+Qua Bảng 4.3, việc so sánh giữa các mô hình đếm cho thấy sai số chuẩn (SE) của mô hình Quasi-Poisson lớn hơn rõ rệt so với mô hình Poisson cổ điển. Điều này xảy ra vì mô hình Quasi-Poisson đã hiệu chỉnh theo hệ số phân tán, với giá trị xấp xỉ $2.58$ lần, nhằm khắc phục hiện tượng quá phân tán. Nhờ vậy, các kiểm định ý nghĩa trong mô hình này trở nên thận trọng và phù hợp hơn với đặc điểm của dữ liệu.
+
+Xét trên chỉ số Tỷ số Tần suất Tác động (IRR = $e^{\beta}$) của mô hình Negative Binomial, đây là mô hình tối ưu hơn trong trường hợp dữ liệu bị quá phân tán, có ba yếu tố thể hiện ảnh hưởng có ý nghĩa thống kê rõ rệt đến số lần ngoại tình gồm: Mức độ hạnh phúc hôn nhân (rating), Số năm kết hôn (yearsmarried) và Mức độ tôn giáo (religiousness). Kết quả này cho thấy các biến phản ánh trạng thái hôn nhân và niềm tin tôn giáo có vai trò quan trọng hơn so với các biến nhân khẩu học thông thường trong việc giải thích tần suất ngoại tình.
+
+Về ý nghĩa thực tiễn của các hệ số tác động trong mô hình NB, Mức độ hạnh phúc (rating) có hệ số $\beta = -0.4156$, tương ứng IRR = $0.6599$ với $p < 0.001$. Điều này có nghĩa là khi mức độ hạnh phúc hôn nhân tăng thêm $1$ điểm, tần suất ngoại tình kỳ vọng giảm $34.01\%$, tức còn $0.6599$ lần so với trước. Tương tự, Mức độ tôn giáo (religiousness) có hệ số $\beta = -0.4376$, tương ứng IRR = $0.6456$ với $p < 0.001$, cho thấy mức độ sùng đạo cao hơn làm giảm $35.44\%$ tần suất ngoại tình kỳ vọng. Trong khi đó, Số năm kết hôn (yearsmarried) có hệ số $\beta = 0.0842$, tương ứng IRR = $1.0879$ với $p = 0.0269$, nghĩa là mỗi năm kết hôn tăng thêm làm tần suất ngoại tình kỳ vọng tăng $8.79\%$.
+
+## Kiểm định Likelihood Ratio (LRT) và kiểm định Wald
+
+Để so sánh hai mô hình lồng nhau giữa Mô hình Thu gọn (Rút bỏ biến con cái `children` và giới tính `gender`) và Mô hình Đầy đủ, chúng ta thực hiện kiểm định LRT:
+
+```{r lrt-test, echo=FALSE, message=FALSE, warning=FALSE}
+# Mô hình Logistic thu gọn
+m_logit_red <- glm(has_affair_num ~ rating + yearsmarried + religiousness, data = df_clean, family = binomial)
+# Kiểm định Likelihood Ratio (LRT)
+lrt_res <- anova(m_logit_red, m_logit, test = "LRT")
+lrt_df <- data.frame(
+  Chi_tieu = c("Giá trị Deviance chênh lệch", "Bậc tự do chênh lệch (df)", "P-value kiểm định LRT"),
+  Gia_tri = c(
+    round(lrt_res$Deviance[2], 4),
+    lrt_res$Df[2],
+    format.pval(lrt_res$`Pr(>Chi)`[2], eps = 0.001)
+  )
+)
+kable(lrt_df,
+      col.names = c("Chỉ tiêu", "Giá trị"),
+      booktabs = TRUE, row.names = FALSE, align = "lr")
+```
+
+Kết quả kiểm định tỷ số Khả phong (LRT) cho thấy mô hình đầy đủ tốt hơn mô hình thu gọn ở mức ý nghĩa $5\%$, với chênh lệch Deviance là $9.9484$, bậc tự do là $4$ và $P-value = 0.0413$. Tuy nhiên, về mặt diễn giải, mô hình thu gọn với ba biến rating, yearsmarried và religiousness vẫn là lựa chọn tinh gọn và giữ lại các yếu tố quan trọng nhất của bài toán.
+
+# ĐÁNH GIÁ VÀ SO SÁNH MÔ HÌNH
+
+## Các Tiêu chí Đánh giá Độ phù hợp
+
+Để lựa chọn mô hình hồi quy tối ưu nhất cho bài toán, chúng ta tiến hành đánh giá dựa trên các chỉ số thông tin AIC, BIC, Log-Likelihood và hệ số xác định giả Pseudo $R^2$ (McFadden, Cox & Snell, Nagelkerke).
+
+```{r setup-05, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+library(pROC)
+library(pscl)
+library(MASS)
+
+if (!exists("df_clean")) {
+  url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
+  df_raw <- read.csv(url_data)
+  if ("X" %in% names(df_raw)) df_raw <- df_raw |> select(-X)
+  df_clean <- df_raw |>
+    mutate(
+      has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
+      has_affair_num = ifelse(affairs > 0, 1, 0),
+      gender = factor(gender, levels = c("male", "female"), labels = c("Nam", "Nữ")),
+      children = factor(children, levels = c("no", "yes"), labels = c("Không có con", "Có con"))
+    )
+}
+
+formula_binary <- has_affair_num ~ rating + yearsmarried + age + religiousness + education + gender + children
+m_logit <- glm(formula_binary, data = df_clean, family = binomial(link = "logit"))
+m_probit <- glm(formula_binary, data = df_clean, family = binomial(link = "probit"))
+m_cloglog <- glm(formula_binary, data = df_clean, family = binomial(link = "cloglog"))
+
+formula_count <- affairs ~ rating + yearsmarried + age + religiousness + education + gender + children
+m_poisson <- glm(formula_count, data = df_clean, family = poisson)
+m_nb <- glm.nb(formula_count, data = df_clean)
+```
+
+```{r}
+#| label: tbl-gof-binary
+#| tbl-cap: "Bảng So sánh Tiêu chí Độ phù hợp của các Mô hình Nhị phân"
+#| echo: false
+#| message: false
+#| warning: false
+# Hàm tính McFadden Pseudo R2
+mcfadden_r2 <- function(model) {
+  1 - (logLik(model) / logLik(update(model, . ~ 1)))
+}
+
+gof_binary_df <- data.frame(
+  Mo_Hinh = c("Logistic (Logit)", "Probit", "Cloglog"),
+  Log_Likelihood = c(as.numeric(logLik(m_logit)), as.numeric(logLik(m_probit)), as.numeric(logLik(m_cloglog))),
+  AIC = c(AIC(m_logit), AIC(m_probit), AIC(m_cloglog)),
+  BIC = c(BIC(m_logit), BIC(m_probit), BIC(m_cloglog)),
+  McFadden_PseudoR2 = c(as.numeric(mcfadden_r2(m_logit)), as.numeric(mcfadden_r2(m_probit)), as.numeric(mcfadden_r2(m_cloglog)))
+)
+
+kable(gof_binary_df,
+      col.names = c("Mô hình Hồi quy", "Log-Likelihood", "AIC", "BIC", "McFadden Pseudo R²"),
+      digits = 4, booktabs = TRUE, row.names = FALSE)
+```
+
+Ba mô hình lựa chọn nhị phân có độ phù hợp gần như tương đương nhau, khi các chỉ số Log-Likelihood, AIC, BIC và McFadden Pseudo R² chỉ chênh lệch rất nhỏ. Cụ thể, mô hình Cloglog và Logistic đạt AIC tốt nhất, lần lượt là $625.6909$ và $625.6964$, đồng thời có McFadden Pseudo R² cao nhất là $0.0973$, nhỉnh hơn một chút so với mô hình Probit với AIC = $626.5050$ và Pseudo R² = $0.0961$. Điều này cho thấy cả ba hàm liên kết đều giải thích dữ liệu tốt như nhau, nhưng Logistic và Cloglog có lợi thế nhẹ về mặt tiết kiệm thông tin.
+
+## Ma trận Nhầm lẫn và Đánh giá Khả năng Phân loại
+
+Chúng ta đánh giá khả năng phân loại của mô hình Logistic trên tập dữ liệu với ngưỡng phân loại mặc định (Cutoff = 0.5):
+
+```{r confusion-matrix, echo=FALSE, message=FALSE, warning=FALSE}
+# Dự báo xác suất
+prob_logit <- predict(m_logit, type = "response")
+pred_class_50 <- ifelse(prob_logit > 0.5, "Có", "Không")
+# Tạo Ma trận Nhầm lẫn (Confusion Matrix)
+cm_tab <- table(Dự_Báo = pred_class_50, Thực_Tế = df_clean$has_affair)
+# Tính toán các chỉ số
+TP <- cm_tab["Có", "Có"]
+TN <- cm_tab["Không", "Không"]
+FP <- cm_tab["Có", "Không"]
+FN <- cm_tab["Không", "Có"]
+accuracy    <- (TP + TN) / sum(cm_tab)
+sensitivity <- TP / (TP + FN)  # Recall
+specificity <- TN / (TN + FP)  # Specificity
+# Phần Ma trận nhầm lẫn
+cm_df <- as.data.frame.matrix(cm_tab)
+cm_df <- data.frame(
+  Chi_tieu = paste("Dự báo", rownames(cm_df)),
+  Khong_Ngoai_Tinh = cm_df[["Không"]],
+  Co_Ngoai_Tinh = cm_df[["Có"]]
+)
+# Phần chỉ số phân loại (thêm cột trống để căn cùng bảng)
+metrics_df <- data.frame(
+  Chi_tieu = c("Accuracy (Độ chính xác tổng thể)",
+               "Sensitivity/Recall (Độ nhạy)",
+               "Specificity (Độ đặc hiệu)"),
+  Khong_Ngoai_Tinh = c(paste0(round(accuracy * 100, 2), "%"),
+                       paste0(round(sensitivity * 100, 2), "%"),
+                       paste0(round(specificity * 100, 2), "%")),
+  Co_Ngoai_Tinh = c("", "", "")
+)
+final_df <- rbind(cm_df, metrics_df)
+kable(final_df,
+      col.names = c("Chỉ tiêu", "Thực tế: Không Ngoại tình", "Thực tế: Có Ngoại tình"),
+      booktabs = TRUE, row.names = FALSE, align = "lcc")
+```
+
+```{r}
+#| label: tbl-cm-show
+#| tbl-cap: "Ma trận Nhầm lẫn (Confusion Matrix) của Mô hình Logistic (Threshold = 0.5)"
+#| echo: false
+#| message: false
+#| warning: false
+cm_display <- data.frame(
+  Du_Bao = c("Dự báo Không", "Dự báo Có"),
+  Thuc_Te_Khong = c(cm_tab["Không", "Không"], cm_tab["Có", "Không"]),
+  Thuc_Te_Co = c(cm_tab["Không", "Có"], cm_tab["Có", "Có"])
+)
+
+kable(cm_display,
+      col.names = c("Phân loại Dự báo", "Thực tế KHÔNG Ngoại tình", "Thực tế CÓ Ngoại tình"),
+      booktabs = TRUE, row.names = FALSE)
+```
+
+Với ngưỡng phân loại mặc định (Cutoff = $0.5$), mô hình Logistic đạt Độ chính xác tổng thể tương đối cao là $75.87\%$. Tuy nhiên, khi phân tích chi tiết Ma trận nhầm lẫn, mô hình cho thấy sự lệch pha rõ rệt giữa hai nhóm: Độ đặc hiệu đạt mức rất cao $96.01\%$ (dự báo chính xác $433/451$ trường hợp không ngoại tình), nhưng Độ nhạy chỉ đạt $15.33\%$ (chỉ phát hiện đúng $23/150$ trường hợp có ngoại tình). Nguyên nhân chính là do hiện tượng mất cân bằng lớp của tập dữ liệu (nhóm không ngoại tình chiếm tới $75.04\%$), dẫn đến việc mô hình có xu hướng thận trọng và ưu tiên dự báo về nhóm chiếm đa số.
+
+## Phân tích Đường cong ROC và Chỉ số AUC
+
+Chúng ta vẽ đường cong ROC Curve (Receiver Operating Characteristic) và tính diện tích dưới đường cong (AUC) để so sánh khả năng phân loại toàn diện của 3 mô hình nhị phân:
+
+```{r roc-auc-analysis, echo=FALSE, message=FALSE, warning=FALSE}
+roc_logit   <- roc(df_clean$has_affair_num, prob_logit, quiet = TRUE)
+roc_probit  <- roc(df_clean$has_affair_num, predict(m_probit, type = "response"), quiet = TRUE)
+roc_cloglog <- roc(df_clean$has_affair_num, predict(m_cloglog, type = "response"), quiet = TRUE)
+auc_df <- data.frame(
+  Mo_Hinh = c("Logistic", "Probit", "Cloglog"),
+  AUC = c(
+    round(auc(roc_logit), 4),
+    round(auc(roc_probit), 4),
+    round(auc(roc_cloglog), 4)
+  )
+)
+kable(auc_df,
+      col.names = c("Mô hình", "Chỉ số AUC"),
+      booktabs = TRUE, row.names = FALSE, align = "lr")
+```
+
+```{r fig-roc-comparison, echo=FALSE, fig.cap="Đường cong ROC So sánh Khả năng Phân loại giữa Logistic, Probit và Cloglog", fig.align="center", fig.height=4.5, fig.width=6.5}
+plot(roc_logit, col = "#2563EB", lwd = 2.5)
+plot(roc_probit, col = "#DC2626", lwd = 2, add = TRUE, lty = 2)
+plot(roc_cloglog, col = "#059669", lwd = 2, add = TRUE, lty = 3)
+legend("bottomright",
+       legend = c(paste0("Logistic (AUC = ", round(auc(roc_logit), 3), ")"),
+                  paste0("Probit (AUC = ", round(auc(roc_probit), 3), ")"),
+                  paste0("Cloglog (AUC = ", round(auc(roc_cloglog), 3), ")")),
+       col = c("#2563EB", "#DC2626", "#059669"), lty = c(1, 2, 3), lwd = 2)
+```
+
+Để đánh giá khả năng phân loại toàn diện không phụ thuộc vào ngưỡng Cutoff, chỉ số diện tích dưới đường cong ROC (AUC) được sử dụng. Kết quả cho thấy cả ba mô hình đều đạt chỉ số AUC vượt mức $0.71$ (Logistic đạt $0.7117$, Probit đạt $0.7116$ và Cloglog đạt $0.7113$). Theo tiêu chuẩn đánh giá mô hình phân loại, giá trị AUC nằm trong khoảng từ $0.7$ đến $0.8$ khẳng định mô hình có khả năng phân biệt tương đối tốt giữa người có hành vi ngoại tình và người không ngoại tình, củng cố tính tin cậy cho các kết luận dự báo ở các bước tiếp theo.
+
+## Đánh giá và So sánh Mô hình Biến đếm
+
+Đối với biến phụ thuộc đếm `affairs`, chúng ta so sánh tiêu chí AIC, BIC và sai số dự báo trung bình (RMSE, MAE) giữa hai mô hình: Hồi quy Poisson và Nhị thức âm (Negative Binomial - NB):
+
+```{r}
+#| label: tbl-count-eval
+#| tbl-cap: "So sánh Tiêu chí Đánh giá giữa Mô hình Poisson và Negative Binomial"
+#| echo: false
+#| message: false
+#| warning: false
+pred_poisson <- predict(m_poisson, type = "response")
+pred_nb <- predict(m_nb, type = "response")
+
+actual_count <- df_clean$affairs
+
+rmse_poisson <- sqrt(mean((actual_count - pred_poisson)^2))
+rmse_nb <- sqrt(mean((actual_count - pred_nb)^2))
+
+mae_poisson <- mean(abs(actual_count - pred_poisson))
+mae_nb <- mean(abs(actual_count - pred_nb))
+
+eval_count_df <- data.frame(
+  Mo_Hinh_Dem = c("Poisson Regression", "Negative Binomial (NB)"),
+  AIC = c(AIC(m_poisson), AIC(m_nb)),
+  BIC = c(BIC(m_poisson), BIC(m_nb)),
+  RMSE = c(rmse_poisson, rmse_nb),
+  MAE = c(mae_poisson, mae_nb)
+)
+
+kable(eval_count_df,
+      col.names = c("Mô hình Đếm", "AIC", "BIC", "RMSE (Sai số bình phương)", "MAE (Sai số tuyệt đối)"),
+      digits = 4, booktabs = TRUE, row.names = FALSE)
+```
+
+Để trực quan hóa sự khác biệt trong khả năng dự báo giữa hai mô hình biến đếm, chúng ta lập biểu đồ hộp (Boxplot) so sánh phân phối của các giá trị dự báo từ mô hình Poisson và Negative Binomial tương ứng với từng nhóm số lần ngoại tình thực tế.
+
+```{r fig-count-pred-boxplot, echo=FALSE, fig.cap="So sánh phân phối giá trị dự báo của mô hình Poisson và Negative Binomial theo số lần ngoại tình thực tế", fig.align="center", fig.height=4, fig.width=6.5}
+df_pred_comp <- data.frame(
+  Actual = factor(df_clean$affairs),
+  Poisson = predict(m_poisson, type = "response"),
+  NegBin = predict(m_nb, type = "response")
+) |>
+  pivot_longer(cols = c(Poisson, NegBin), names_to = "Model", values_to = "Predicted")
+
+ggplot(df_pred_comp, aes(x = Actual, y = Predicted, fill = Model)) +
+  geom_boxplot(alpha = 0.7, outlier.size = 1) +
+  scale_fill_manual(values = c("Poisson" = "#DC2626", "NegBin" = "#2563EB"),
+                    labels = c("Poisson Regression", "Negative Binomial")) +
+  theme_minimal(base_size = 12) +
+  labs(
+    x = "Số lần ngoại tình thực tế (affairs)",
+    y = "Giá trị ngoại tình dự báo (Predicted count)",
+    fill = "Mô hình"
+  ) +
+  theme(legend.position = "top", plot.title = element_text(face = "bold", size = 13))
+```
+
+Mô hình Quasi-Poisson không xuất hiện trong Bảng do mô hình này dựa trên hàm giả khả phong (Quasi-likelihood) nên không có hàm khả phong chính thức để tính toán các chỉ số thông tin AIC và BIC. Việc so sánh các tiêu chí độ phù hợp ($AIC, BIC$) vì vậy được tập trung giữa mô hình Poisson cổ điển và mô hình phân phối đầy đủ Negative Binomial.
+
+Mô hình Negative Binomial thể hiện sự vượt trội hoàn toàn so với mô hình Poisson cổ điển về độ phù hợp tổng thể đối với dữ liệu nghiên cứu này.
+
+Chỉ số thông tin AIC của Negative Binomial giảm gần một nửa, từ $2877.987$ (ở mô hình Poisson) xuống còn $1475.104$, đồng thời BIC giảm từ $2913.175$ xuống $1514.692$. Sự cải thiện vượt bậc này là nhờ mô hình NB ước lượng bổ sung tham số phân tán $\theta$, giúp khắc phục triệt để hiện tượng quá phân tán, hiện tượng khiến mô hình Poisson bị phạt rất nặng về chỉ số AIC/BIC do giả định phương sai bằng trung bình bị vi phạm nghiêm trọng.
+
+Ở biểu đồ Boxplot, đối với nhóm không ngoại tình (0 lần), mô hình Negative Binomial (màu xanh) cho dải dự báo tập trung sát giá trị 0 hơn so với Poisson (màu đỏ). Ngược lại, đối với các nhóm có tần suất ngoại tình thực tế cao (đặc biệt là 7 lần và 12 lần), mô hình Negative Binomial phản ánh tốt hơn độ biến động lớn của dữ liệu với hộp phân phối mở rộng hơn về phía trên. Mặc dù mô hình Poisson cho chỉ số RMSE ($3.0373$) và MAE ($1.9305$) nhỏ hơn một chút so với NB (RMSE = $3.0976$, MAE = $1.9711$), nhưng sự thu hẹp sai số chuẩn quá mức ở Poisson sẽ dẫn đến các kết luận kiểm định thiếu cẩn trọng (bác bỏ sai $H_0$). Do đó, mô hình Negative Binomial hoàn toàn là lựa chọn tối ưu nhất để giải thích hành vi số lần ngoại tình `affairs`.
+
+# MÔ HÌNH LOG-LINEAR VÀ HÀM Ý QUẢN TRỊ
+
+## Cơ sở lý thuyết Mô hình Log-linear cho Bảng tiếp liên (Log-linear Models)
+
+Mô hình Log-linear là một dạng đặc biệt của GLM với phân phối Poisson, dùng để phân tích cấu trúc mối quan hệ giữa các biến phân loại trong bảng tiếp liên đa chiều. Không như mô hình hồi quy thông thường, mô hình Log-linear không phân biệt biến độc lập và biến phụ thuộc, mà xem xét tần số kỳ vọng $\mu_{ij\dots}$ của từng ô trong bảng như một hàm của các hiệu ứng chính và tương tác giữa các biến phân loại.
+
+Độ phù hợp của mô hình được đánh giá qua thống kê Likelihood Ratio Deviance:
+
+$$G^2 = 2\sum_{ij} n_{ij} \ln\!\left(\frac{n_{ij}}{\hat{\mu}_{ij}}\right) \sim \chi^2_{df}$$
+
+Trong đó $n_{ij}$ là tần số quan sát, $\hat{\mu}_{ij}$ là tần số kỳ vọng ước lượng từ mô hình, và bậc tự do $df$ được xác định bởi sự chênh lệch số tham số giữa mô hình bão hòa và mô hình đang xét.
+
+**Các dạng mô hình cơ bản**
+
+Mô hình Log-linear bao gồm ba dạng cơ bản, được phân loại theo mức độ phức tạp của các số hạng tương tác:
+
+Mô hình Độc lập (Independence Model): Giả định không có mối liên hệ nào giữa các biến phân loại; tần số kỳ vọng ở mỗi ô chỉ phụ thuộc vào hiệu ứng biên của từng biến riêng lẻ. Đây là mô hình đơn giản nhất, với số bậc tự do lớn nhất.
+
+$$\ln(\mu_{ij}) = \lambda + \lambda_i^X + \lambda_j^Y$$
+
+Ràng buộc: $\sum_i \lambda_i^X = 0$, $\sum_j \lambda_j^Y = 0$.
+
+Mô hình Đồng nhất hiệp (Homogeneous Association Model): Áp dụng cho bảng tiếp liên từ ba chiều trở lên. Mô hình giả định có tương tác từng đôi giữa tất cả các cặp biến nhưng không có tương tác bậc ba. Tỷ số chênh lệch (odds ratio) giữa hai biến bất kỳ là đồng nhất qua các mức của biến thứ ba.
+
+$$\ln(\mu_{ijk}) = \lambda + \lambda_i^X + \lambda_j^Y + \lambda_k^Z + \lambda_{ij}^{XY} + \lambda_{ik}^{XZ} + \lambda_{jk}^{YZ}$$
+
+Mô hình Bão hòa (Saturated Model): Mô hình bao gồm tất cả các hiệu ứng chính và toàn bộ các số hạng tương tác, kể cả tương tác bậc cao nhất. Mô hình này khớp hoàn hảo với dữ liệu ($df = 0$, $G^2 = 0$), tần số dự đoán bằng chính xác tần số quan sát. Mô hình bão hòa được dùng làm chuẩn cơ sở để tính deviance và so sánh mức độ phù hợp của các mô hình đơn giản hơn.
+
+Với bảng ba chiều $I \times J \times K$ (ba biến $X$, $Y$, $Z$):
+
+$$\ln(\mu_{ijk}) = \lambda + \lambda_i^X + \lambda_j^Y + \lambda_k^Z + \lambda_{ij}^{XY} + \lambda_{ik}^{XZ} + \lambda_{jk}^{YZ} + \lambda_{ijk}^{XYZ}$$
+
+## Ứng dụng thực nghiệm: Bảng tiếp liên 3 chiều
+
+Trong phân tích dữ liệu định tính, trong khi mô hình Logistic Regression coi một biến là phụ thuộc ($Y$) và các biến còn lại là độc lập ($X$), thì Mô hình Log-linear đối xử bình đẳng với tất cả các biến định tính và mô hình hóa tần số ô (cell counts) của bảng ngẫu nhiên phân tầng.
+
+Chúng ta tiến hành xây dựng mô hình Log-linear 3 chiều cho bảng chéo giữa Giới tính (`gender`), Mức độ Hạnh phúc nhị phân (`happy_bin`), và Hành vi Ngoại tình (`has_affair`).
+
+```{r setup-06, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+
+if (!exists("df_clean")) {
+  url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
+  df_raw <- read.csv(url_data)
+  if ("X" %in% names(df_raw)) df_raw <- df_raw |> select(-X)
+  df_clean <- df_raw |>
+    mutate(
+      has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
+      has_affair_num = ifelse(affairs > 0, 1, 0),
+      gender = factor(gender, levels = c("male", "female"), labels = c("Nam", "Nữ")),
+      happy_bin = factor(ifelse(rating <= 3, "Bất hạnh", "Hạnh phúc"), levels = c("Hạnh phúc", "Bất hạnh"))
+    )
+} else {
+  df_clean <- df_clean |>
+    mutate(
+      happy_bin = factor(ifelse(rating <= 3, "Bất hạnh", "Hạnh phúc"), levels = c("Hạnh phúc", "Bất hạnh"))
+    )
+}
+```
+
+```{r cell-counts, echo=FALSE, message=FALSE, warning=FALSE}
+df_tab3 <- df_clean |>
+  count(gender, happy_bin, has_affair, name = "Freq")
+```
+
+### Xây dựng các Mô hình Log-linear Cạnh tranh
+
+Chúng ta chạy 3 cấu trúc mô hình Log-linear bằng thuật toán Poisson GLM trên tần số ô `Freq`:
+
+Mô hình Độc lập Hoàn toàn (Mutual Independence Model - $M_0$): `Freq ~ gender + happy_bin + has_affair`
+
+Mô hình Tương tác Đồng nhất (Homogeneous Association Model - $M_1$): Bao gồm tất cả các tương tác 2 chiều `(gender + happy_bin + has_affair)^2`
+
+Mô hình Bão hòa (Saturated Model - $M_2$): Bao gồm cả tương tác 3 chiều `gender * happy_bin * has_affair`
+
+```{r loglinear-models, echo=FALSE, message=FALSE, warning=FALSE}
+# 1. Mô hình Độc lập
+m_log_ind <- glm(Freq ~ gender + happy_bin + has_affair, data = df_tab3, family = poisson)
+
+# 2. Mô hình Tương tác Đồng nhất (Homogeneous Association)
+m_log_homo <- glm(Freq ~ (gender + happy_bin + has_affair)^2, data = df_tab3, family = poisson)
+
+# 3. Mô hình Bão hòa (Saturated)
+m_log_sat <- glm(Freq ~ gender * happy_bin * has_affair, data = df_tab3, family = poisson)
+```
+
+### So sánh Độ phù hợp của các Mô hình Log-linear
+
+```{r}
+#| label: tbl-loglinear-comp
+#| tbl-cap: "Bảng So sánh Độ khớp Goodness-of-fit của các Mô hình Log-linear 3 chiều"
+#| echo: false
+#| message: false
+#| warning: false
+loglin_comp_df <- data.frame(
+  Mo_Hinh = c("Độc lập Hoàn toàn (M0)", "Tương tác Đồng nhất (M1)", "Bão hòa (M2)"),
+  Residual_Deviance = c(m_log_ind$deviance, m_log_homo$deviance, m_log_sat$deviance),
+  Degrees_of_Freedom = c(m_log_ind$df.residual, m_log_homo$df.residual, m_log_sat$df.residual),
+  AIC = c(AIC(m_log_ind), AIC(m_log_homo), AIC(m_log_sat)),
+  P_value_Deviance = c(
+    format.pval(1 - pchisq(m_log_ind$deviance, m_log_ind$df.residual), eps = 0.001),
+    format.pval(1 - pchisq(m_log_homo$deviance, m_log_homo$df.residual), eps = 0.001),
+    "1.000 (Khớp hoàn hảo)"
+  )
+)
+
+kable(loglin_comp_df,
+      col.names = c("Cấu trúc Mô hình", "Residual Deviance (G²)", "Bậc tự do (df)", "AIC", "P-value Độ phù hợp"),
+      digits = 4, booktabs = TRUE, row.names = FALSE)
+```
+
+Bảng 6.1 so sánh độ phù hợp của ba cấu trúc mô hình Log-linear. Mô hình Độc lập Hoàn toàn ($M_0$) bị bác bỏ do Residual Deviance quá lớn ($G^2 = 28.1792$, $df = 4$, $p < 0.001$). Trong khi đó, Mô hình Tương tác Đồng nhất ($M_1$) cho Residual Deviance $G^2 = 2.3000$ với $df = 1$ và P-value = $0.12938$ ($> 0.05$). Kết quả này khẳng định mô hình $M_1$ khớp rất tốt với dữ liệu thực tế mà không cần bổ sung thêm tương tác ba chiều phức tạp như Mô hình Bão hòa ($M_2$). Đồng thời, $M_1$ đạt chỉ số AIC tốt ($63.7246$), thể hiện sự cân bằng tối ưu giữa độ phù hợp và tính tinh gọn của mô hình.
+
+## Sự tương đương Toán học giữa Mô hình Log-linear và Logistic Regression
+
+Một phát hiện toán học thống kê quan trọng là Mô hình Logistic Regression là một trường hợp đặc biệt (có điều kiện) của Mô hình Log-linear.
+
+If lấy hệ số tương tác 2 chiều giữa `happy_bin` và `has_affair` từ mô hình Log-linear $M_1$:
+
+```{r equivalence-check, echo=FALSE, message=FALSE, warning=FALSE}
+# Hệ số tương tác từ Log-linear Homogeneous Association
+lambda_happy_affair <- coef(m_log_homo)["happy_binBất hạnh:has_affairCó"]
+
+# Hệ số biến happy_bin từ Logistic Regression tương ứng
+m_logit_simple <- glm(has_affair ~ happy_bin + gender, data = df_clean, family = binomial)
+beta_happy_logit <- coef(m_logit_simple)["happy_binBất hạnh"]
+
+equiv_df <- data.frame(
+  Chi_tieu = c("Hệ số tương tác λ (Log-linear)", "Hệ số β trong Logistic Regression"),
+  Gia_tri = c(round(lambda_happy_affair, 4), round(beta_happy_logit, 4))
+)
+
+kable(equiv_df,
+      col.names = c("Chỉ tiêu", "Giá trị"),
+      booktabs = TRUE, row.names = FALSE, align = "lr")
+```
+
+Kết quả tính toán từ mô hình Log-linear Tương tác Đồng nhất ($M_1$) và mô hình Logistic Regression cho thấy sự trùng khớp tuyệt đối về mặt số liệu: hệ số tương tác 2 chiều $\lambda$ giữa Mức độ hạnh phúc (`happy_bin`) và Hành vi ngoại tình (`has_affair`) trong Log-linear đúng bằng $0.9842$, trùng hoàn toàn với hệ số $\beta$ của biến `happy_bin` trong Logistic Regression ($0.9842$). Sự trùng khớp này là minh chứng toán học quan trọng khẳng định Logistic Regression chính là một trường hợp có điều kiện của mô hình Log-linear. Phát hiện này mang lại sự linh hoạt rất lớn trong phân tích thực tiễn: nhà nghiên cứu có thể tiếp cận bài toán từ góc độ mô hình hóa tần số số đếm ô hay xác suất sự kiện thì đều dẫn đến cùng một kết luận thống kê nhất quán.
+
+## Khuyến nghị Quản trị và Ý nghĩa Thực tiễn
+
+Dựa trên các kết quả kiểm định thống kê và ước lượng mô hình kinh tế lượng định tính (Logistic, Negative Binomial, Log-linear), nghiên cứu rút ra các hàm ý quản trị, tâm lý và xã hội học quan trọng sau:
+
+Cả mô hình lựa chọn nhị phân và mô hình hồi quy biến đếm đều khẳng định Mức độ hạnh phúc hôn nhân (`rating`) có tác động nghịch chiều mạnh nhất tới quyết định và tần suất ngoại tình. Cụ thể, khi đánh giá hạnh phúc tăng thêm 1 điểm, nguy cơ ngoại tình giảm $37.5\%$ (ở mô hình Logistic) và số lần ngoại tình kỳ vọng giảm $34.01\%$ (ở mô hình Negative Binomial). Điều này hàm ý rằng các giải pháp tư vấn tâm lý - hôn nhân gia đình cần tập trung vào việc cải thiện mức độ gắn kết, sự thấu hiểu và trải nghiệm hài lòng trong đời sống vợ chồng.
+
+Mức độ sùng đạo (`religiousness`) đóng vai trò như một "màng lọc chuẩn mực" hữu hiệu giúp kiềm chế hành vi có mối quan hệ ngoài luồng, giúp giảm tới $35.44\%$ tần suất ngoại tình kỳ vọng. Các giá trị đạo đức và niềm tin tâm linh là yếu tố tinh thần quan trọng củng cố sự cam kết trong quan hệ vợ chồng.
+
+Số năm kết hôn (`yearsmarried`) tác động thuận chiều, làm tăng trung bình khoảng $8.8\%$ đến $10\%$ rủi ro và tần suất ngoại tình theo từng năm tích lũy. Kết quả này phát đi tín hiệu cảnh báo cho các cặp đôi kết hôn lâu năm về nguy cơ rạn nứt do sự quen thuộc, đòi hỏi sự chủ động hâm nóng tình cảm và đổi mới đời sống hôn nhân theo thời gian.
+
+## Hạn chế của Đề tài và Hướng Phát triển Tiếp theo
+
+**Hạn chế của nghiên cứu**
+
+Mặc dù đạt được các kết quả mô hình hóa chuẩn xác, đề tài vẫn tồn tại một số giới hạn nhất định. Dữ liệu nghiên cứu là dạng dữ liệu cắt ngang thu thập từ thập niên 1970, vốn có thể chưa phản ánh trọn vẹn những thay đổi trong quan niệm xã hội và hành vi hôn nhân hiện đại. Bên cạnh đó, hành vi ngoại tình là chủ đề nhạy cảm nên dữ liệu khảo sát có thể vướng phải sai lệch tự báo cáo.
+
+**Hướng phát triển tiếp theo**
+
+Để nâng cao tính ứng dụng và độ chính xác dự báo, các nghiên cứu trong tương lai có thể mở rộng thu thập dữ liệu bảng để theo dõi sự thay đổi hành vi của các cá nhân qua thời gian. Đồng thời, việc kết hợp so sánh các mô hình kinh tế lượng định tính cổ điển (GLM) với các thuật toán Học máy hiện đại (như *Random Forest*, *XGBoost*) sẽ giúp tối ưu hóa khả năng phân loại và dự báo rủi ro hôn nhân trong thực tiễn.
+
+# TÀI LIỆU THAM KHẢO {.unnumbered}
+
+1. Agresti, A. (2002). *Categorical Data Analysis* (2nd ed.). John Wiley & Sons.
+2. Agresti, A. (2013). *Categorical Data Analysis* (3rd ed.). John Wiley & Sons.
+3. Cameron, A. C., & Trivedi, P. K. (1990). Regression-based tests for overdispersion in the Poisson model. *Journal of Econometrics*, 46(3), 347-364.
+4. Cameron, A. C., & Trivedi, P. K. (2013). *Regression Analysis of Count Data* (2nd ed.). Cambridge University Press.
+5. Fair, R. C. (1978). A theory of extramarital affairs. *Journal of Political Economy*, 86(1), 45-61.
+6. Greene, W. H. (2018). *Econometric Analysis* (8th ed.). Pearson.
+7. Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X. (2013). *Applied Logistic Regression* (3rd ed.). John Wiley & Sons.
+8. Kleiber, C., & Zeileis, A. (2008). *Applied Econometrics with R*. Springer Science & Business Media.
+9. Lambert, D. (1992). Zero-inflated Poisson regression, with an application to defects in manufacturing. *Technometrics*, 34(1), 1-14.
+10. Long, J. S. (1997). *Regression Models for Categorical and Limited Dependent Variables*. SAGE Publications.
+11. R Core Team. (2024). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+12. Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D. A., François, R., ... & Yutani, H. (2019). Welcome to the Tidyverse. *Journal of Open Source Software*, 4(43), 1686. <https://doi.org/10.21105/joss.01686>.
+13. Zeileis, A., Kleiber, C., & Jackman, S. (2008). Regression models for count data in R. *Journal of Statistical Software*, 27(8), 1-25.
