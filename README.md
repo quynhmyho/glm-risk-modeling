@@ -9,7 +9,7 @@
 
 ---
 
-## 30-Second Executive Summary
+## Executive Summary
 
 In financial institutions and risk management (Credit Risk, Actuarial Science, Fraud Detection), target variables are rarely continuous Gaussian distributions—they are typically **binary default flags ($Y \in \{0,1\}$)** or **discrete event counts ($Y \in \mathbb{N}_0$) with heavy zero-inflation**. 
 
@@ -42,7 +42,7 @@ While the underlying empirical data investigates extramarital decision-making (R
 
 ---
 
-## Core Quantitative Findings
+## Quantitative Findings
 
 ### 1. Headline Model Performance Summary
 | Analytical Domain | Model / Method | Key Metric / Statistic | $p$-value | Practical Takeaway |
