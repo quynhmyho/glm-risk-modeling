@@ -138,8 +138,8 @@ While the underlying empirical data investigates extramarital decision-making (R
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/quynhmyho/my-first-project.git
-cd my-first-project
+git clone https://github.com/quynhmyho/glm-risk-modeling.git
+cd glm-risk-modeling
 ```
 
 ### 2. Install Required R Libraries
