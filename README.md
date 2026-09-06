@@ -1,4 +1,4 @@
-# 📊 Discrete Choice & Risk Modeling: Generalized Linear Models (GLM)
+# Discrete Choice & Risk Modeling: Generalized Linear Models (GLM)
 
 [![R](https://img.shields.io/badge/Language-R%204.4+-276DC3.svg?logo=r&logoColor=white)](https://www.r-project.org/)
 [![Field](https://img.shields.io/badge/Domain-Quantitative%20Risk%20%7C%20Econometrics-8A2BE2.svg)](#-financial--risk-modeling-applications)
@@ -9,7 +9,7 @@
 
 ---
 
-## ⚡ 30-Second Executive Summary
+## 30-Second Executive Summary
 
 In financial institutions and risk management (Credit Risk, Actuarial Science, Fraud Detection), target variables are rarely continuous Gaussian distributions—they are typically **binary default flags ($Y \in \{0,1\}$)** or **discrete event counts ($Y \in \mathbb{N}_0$) with heavy zero-inflation**. 
 
@@ -21,7 +21,7 @@ This project demonstrates how advanced **Generalized Linear Models (GLMs)** outp
 
 ---
 
-## 💼 Financial & Risk Modeling Applications
+## Financial & Risk Modeling Applications
 
 While the underlying empirical data investigates extramarital decision-making (Ray Fair, 1978), the exact mathematical and econometric architectures directly map to **Banking, Fintech, and Insurance Risk Analytics**:
 
@@ -42,7 +42,7 @@ While the underlying empirical data investigates extramarital decision-making (R
 
 ---
 
-## 📈 Core Quantitative Findings
+## Core Quantitative Findings
 
 ### 1. Headline Model Performance Summary
 | Analytical Domain | Model / Method | Key Metric / Statistic | $p$-value | Practical Takeaway |
@@ -71,7 +71,7 @@ While the underlying empirical data investigates extramarital decision-making (R
 
 ---
 
-## 🖼️ Visual Insights Dashboard
+## Visual Insights Dashboard
 
 <table align="center">
   <tr>
@@ -102,7 +102,7 @@ While the underlying empirical data investigates extramarital decision-making (R
 
 ---
 
-## 📂 Streamlined Repository Architecture
+## Streamlined Repository Architecture
 
 ```text
 ├── README.md                           # Executive quantitative risk portfolio documentation
@@ -155,7 +155,7 @@ Rscript scripts/run_all.R
 
 ---
 
-## 🛠️ Technical Competencies Demonstrated
+## Technical Competencies Demonstrated
 
 - **Econometric & Statistical Modeling**: Generalized Linear Models (Logit, Probit, Cloglog, Poisson, Quasi-Poisson, Negative Binomial), Maximum Likelihood Estimation (MLE), Link Functions, Incident Rate Ratios (IRR).
 - **Diagnostics & Risk Validation**: Cameron & Trivedi Overdispersion Test, Likelihood Ratio Tests (LRT), Receiver Operating Characteristic (ROC), Area Under Curve (AUC), McFadden Pseudo-$R^2$, Confusion Matrix.
