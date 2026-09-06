@@ -11,11 +11,11 @@ suppressPackageStartupMessages({
 })
 
 # Load clean dataset and models
-if (!file.exists("data/processed/models.rds")) {
+if (!file.exists("data/models.rds")) {
   source("scripts/04_binary_and_count_models.R")
 }
-df_clean <- readRDS("data/processed/affairs_cleaned.rds")
-models <- readRDS("data/processed/models.rds")
+df_clean <- readRDS("data/affairs_cleaned.rds")
+models <- readRDS("data/models.rds")
 
 m_logit <- models$m_logit
 m_probit <- models$m_probit

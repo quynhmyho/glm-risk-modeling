@@ -1,6 +1,6 @@
 # ==============================================================================
 # Script 01: Data Ingestion, Inspection, and Cleaning
-# Project: Econometric Analysis of Extramarital Affairs (Ray Fair, 1978)
+# Project: Econometric Risk & Categorical Decision Modeling
 # Author: Ho Quynh My
 # ==============================================================================
 
@@ -9,16 +9,15 @@ suppressPackageStartupMessages({
 })
 
 # Create directory structure if not exists
-dir.create("data/raw", recursive = TRUE, showWarnings = FALSE)
-dir.create("data/processed", recursive = TRUE, showWarnings = FALSE)
+dir.create("data", recursive = TRUE, showWarnings = FALSE)
 dir.create("figures", recursive = TRUE, showWarnings = FALSE)
 
 cat(">>> Step 1: Loading raw data...\n")
-raw_data_path <- "data/raw/Affairs.csv"
+raw_data_path <- "data/Affairs.csv"
 url_data <- "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/AER/Affairs.csv"
 
 if (!file.exists(raw_data_path)) {
-  cat("Downloading raw dataset from source...\n")
+  cat("Downloading dataset from repository source...\n")
   df_raw <- tryCatch({
     read.csv(url_data)
   }, error = function(e) {
@@ -26,7 +25,7 @@ if (!file.exists(raw_data_path)) {
   })
   write.csv(df_raw, raw_data_path, row.names = FALSE)
 } else {
-  cat("Loading local raw dataset...\n")
+  cat("Loading local dataset...\n")
   df_raw <- read.csv(raw_data_path)
 }
 
@@ -43,7 +42,7 @@ stopifnot(sum(missing_summary) == 0) # Confirm 0 missing values across 601 rows
 cat(">>> Step 3: Feature Engineering and Categorical Encoding...\n")
 df_clean <- df_raw |>
   mutate(
-    # Binary target variable: 1 if affairs > 0, 0 otherwise
+    # Binary target variable: 1 if affairs > 0, 0 otherwise (analogue to Default vs Non-Default)
     has_affair = factor(ifelse(affairs > 0, "Có", "Không"), levels = c("Không", "Có")),
     has_affair_num = ifelse(affairs > 0, 1, 0),
     
@@ -86,7 +85,7 @@ df_clean <- df_raw |>
   )
 
 cat(">>> Step 4: Saving processed dataset...\n")
-write.csv(df_clean, "data/processed/affairs_cleaned.csv", row.names = FALSE)
-saveRDS(df_clean, "data/processed/affairs_cleaned.rds")
+write.csv(df_clean, "data/affairs_cleaned.csv", row.names = FALSE)
+saveRDS(df_clean, "data/affairs_cleaned.rds")
 
 cat("Data cleaning completed successfully! Total observations:", nrow(df_clean), "\n")

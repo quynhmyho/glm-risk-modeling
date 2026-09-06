@@ -11,10 +11,10 @@ suppressPackageStartupMessages({
 })
 
 # Load clean dataset
-if (!file.exists("data/processed/affairs_cleaned.rds")) {
+if (!file.exists("data/affairs_cleaned.rds")) {
   source("scripts/01_data_cleaning.R")
 }
-df_clean <- readRDS("data/processed/affairs_cleaned.rds")
+df_clean <- readRDS("data/affairs_cleaned.rds")
 
 cat("=================================================================\n")
 cat(" 1. BINARY CHOICE MODELS: LOGISTIC, PROBIT, CLOGLOG\n")
@@ -135,5 +135,5 @@ models_list <- list(
   m_quasipoisson = m_quasipoisson,
   m_nb = m_nb
 )
-saveRDS(models_list, "data/processed/models.rds")
+saveRDS(models_list, "data/models.rds")
 cat("Script 04 completed successfully!\n")
