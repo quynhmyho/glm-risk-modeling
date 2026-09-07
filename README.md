@@ -134,7 +134,7 @@ While the underlying empirical data investigates extramarital decision-making (R
 
 ---
 
-## 🚀 How to Reproduce
+## How to Reproduce
 
 ### 1. Clone the Repository
 ```bash
@@ -164,7 +164,7 @@ Rscript scripts/run_all.R
 
 ---
 
-## 👤 Author & Contact
+## Author & Contact
 
 - **Ho Quynh My** — *Quantitative Finance & Risk Data Analyst*
 - **GitHub**: [@quynhmyho](https://github.com/quynhmyho)
